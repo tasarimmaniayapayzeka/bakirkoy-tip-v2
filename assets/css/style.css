@@ -730,6 +730,64 @@ a.map-facade:hover{border-color:var(--copper-500)}
   body{padding-bottom:56px}
 }
 
+/* --- Faz 0: WhatsApp balonu -------------------------------------------------------- */
+.wa-fab{
+  position:fixed; right:18px; bottom:18px; z-index:55;
+  display:flex; align-items:center; gap:.6rem;
+  background:#12753A; color:#fff; border-radius:999px;
+  padding:.8rem 1.15rem; font-weight:700; font-size:.88rem;
+  box-shadow:0 10px 28px rgba(8,21,39,.28);
+  transition:background .18s ease;
+}
+.wa-fab:hover{background:#0E5E2E}
+.wa-fab svg{width:22px; height:22px; flex:none}
+@media (max-width:900px){
+  .wa-fab{bottom:72px; right:12px; padding:.75rem}
+  .wa-fab .wa-fab-txt{display:none}
+}
+
+/* --- Faz 0: hız vaadi şeridi -------------------------------------------------------- */
+.fast-strip{background:var(--navy-50); border-bottom:1px solid var(--line)}
+.fast-strip .wrap{
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:1px; background:var(--line);
+  border-left:1px solid var(--line); border-right:1px solid var(--line);
+}
+.fast-strip .fi{
+  background:var(--navy-50); padding:.95rem 1.1rem;
+  display:flex; align-items:center; gap:.7rem; font-size:.86rem; font-weight:600; color:var(--navy-800);
+}
+.fast-strip .fi svg{width:19px; height:19px; color:var(--copper-600); flex:none}
+@media (max-width:900px){ .fast-strip .wrap{grid-template-columns:1fr 1fr} }
+@media (max-width:480px){ .fast-strip .wrap{grid-template-columns:1fr} }
+
+/* --- Faz 0: hekim müsaitlik etiketi -------------------------------------------------- */
+.doc-avail{
+  display:inline-flex; align-items:center; gap:.45rem;
+  font-size:.78rem; font-weight:700; color:var(--navy-800);
+  background:var(--navy-50); border:1px solid var(--navy-100);
+  padding:.3rem .65rem; margin-bottom:.65rem;
+}
+.doc-avail::before{content:""; width:7px; height:7px; border-radius:50%; background:#1E9E58; flex:none}
+
+/* --- Faz 0: sayfa altı Sizi Arayalım bandı ------------------------------------------- */
+.cb-band{background:var(--navy-950); color:var(--on-dark); border-top:3px solid var(--copper-600)}
+.cb-band .wrap{
+  display:flex; align-items:center; justify-content:space-between; gap:1.5rem;
+  padding-block:1.4rem; flex-wrap:wrap;
+}
+.cb-band .cb-txt strong{font-family:var(--ff-serif); font-size:1.15rem; color:#fff; display:block}
+.cb-band .cb-txt span{font-size:.85rem; color:var(--on-dark-muted)}
+.cb-band form{display:flex; gap:.6rem; flex-wrap:wrap; align-items:center}
+.cb-band input{
+  min-height:48px; padding:.6rem .9rem; font:inherit; min-width:200px;
+  border:1.5px solid var(--line-dark); background:var(--navy-900); color:#fff; border-radius:var(--r);
+}
+.cb-band input::placeholder{color:var(--on-dark-muted)}
+.cb-band input:focus{outline:none; border-color:var(--copper-500)}
+.cb-band .cb-ok{display:none; font-weight:700; color:#7BDF9E; font-size:.95rem}
+.cb-band.done form{display:none}
+.cb-band.done .cb-ok{display:block}
+
 /* --- 404 -------------------------------------------------------------------------- */
 .nf{min-height:52vh; display:grid; place-items:center; text-align:center; padding:clamp(3rem,8vw,6rem) var(--gut)}
 .nf .code{font-family:var(--ff-serif); font-size:clamp(4rem,10vw,7rem); color:var(--navy-100); line-height:1}
