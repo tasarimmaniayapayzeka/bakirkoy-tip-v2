@@ -1,4 +1,4 @@
-# Özel Bakırköy Tıp Merkezi — DEMO 2 (Lacivert + Bakır)
+# Özel Avrupa Tıp Merkezi — DEMO 2 (Lacivert + Bakır)
 
 Bakırköy tıp merkezi projesi için **ikinci tasarım konsepti**. Demo 1'in
 (petrol yeşili + altın, `bakirkoy-tip-merkezi-web`) içerik iskeletini kullanır;

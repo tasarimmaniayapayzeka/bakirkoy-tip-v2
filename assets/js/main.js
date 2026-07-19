@@ -1,4 +1,4 @@
-/* Özel Bakırköy Tıp Merkezi — DEMO 2 site geneli JS
+/* Özel Avrupa Tıp Merkezi — DEMO 2 site geneli JS
    1) Telefon maskesi: tüm tel inputlarında 0XXX XXX XX XX biçimi
    2) Mobil menü: paneli mevcut .nav linklerinden dinamik kurar
    3) Branş filtresi: hekimler sayfasında (#docGrid varsa)
