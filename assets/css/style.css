@@ -440,7 +440,15 @@ a.map-facade:hover{border-color:var(--copper-500)}
 .logo-strip span{
   flex:1 1 160px; background:#fff; text-align:center; padding:1.1rem 1rem;
   font-family:var(--ff-serif); font-weight:600; font-size:.95rem; color:var(--ink-2);
+  position:relative; cursor:default;
+  transition:background .18s ease, color .18s ease;
 }
+.logo-strip span::after{
+  content:""; position:absolute; left:0; top:0; width:0; height:3px;
+  background:var(--copper-600); transition:width .22s ease;
+}
+.logo-strip span:hover{background:var(--copper-50); color:var(--copper-700)}
+.logo-strip span:hover::after{width:100%}
 
 /* --- Form ----------------------------------------------------------------- */
 .form-card{
