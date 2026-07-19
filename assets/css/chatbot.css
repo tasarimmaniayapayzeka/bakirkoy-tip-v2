@@ -1,0 +1,79 @@
+/* Avrupa Tıp Merkezi — kurallı chatbot (Demo 2, lacivert+bakır) */
+.cbt-launch{
+  position:fixed; left:18px; bottom:18px; z-index:55;
+  display:flex; align-items:center; gap:.55rem;
+  background:var(--navy-900); color:#fff; border:1px solid var(--navy-700);
+  border-radius:999px; padding:.8rem 1.15rem; font-weight:700; font-size:.88rem;
+  cursor:pointer; box-shadow:0 10px 28px rgba(8,21,39,.28);
+  transition:background .18s ease;
+}
+.cbt-launch:hover{background:var(--navy-800)}
+.cbt-launch svg{width:20px; height:20px; color:var(--copper-300); flex:none}
+@media (max-width:900px){
+  .cbt-launch{bottom:72px; left:12px; padding:.75rem}
+  .cbt-launch .cbt-launch-txt{display:none}
+}
+
+.cbt-panel{
+  position:fixed; left:18px; bottom:18px; z-index:70;
+  width:min(380px, calc(100vw - 24px)); height:min(560px, calc(100vh - 40px));
+  background:#fff; border:1px solid var(--line); border-top:3px solid var(--copper-600);
+  display:none; flex-direction:column;
+  box-shadow:0 24px 60px rgba(8,21,39,.35);
+}
+.cbt-panel.acik{display:flex}
+@media (max-width:900px){
+  .cbt-panel{left:8px; right:8px; width:auto; bottom:8px; height:min(560px, calc(100vh - 24px))}
+}
+
+.cbt-head{
+  background:var(--navy-950); color:#fff; padding:.9rem 1.1rem;
+  display:flex; align-items:center; gap:.7rem;
+}
+.cbt-head .mark{width:34px; height:34px; background:var(--copper-600); display:grid; place-items:center; flex:none}
+.cbt-head .mark svg{width:17px; height:17px; color:#fff}
+.cbt-head strong{font-family:var(--ff-serif); font-size:1rem; display:block; line-height:1.2}
+.cbt-head span{font-size:.72rem; color:var(--on-dark-muted)}
+.cbt-kapat{
+  margin-left:auto; width:34px; height:34px; display:grid; place-items:center;
+  background:transparent; border:1px solid var(--line-dark); color:#fff; cursor:pointer;
+}
+.cbt-kapat:hover{background:var(--navy-800)}
+.cbt-kapat svg{width:16px; height:16px}
+
+.cbt-govde{flex:1; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:.6rem; background:var(--bg-2)}
+.cbt-msj{max-width:88%; padding:.65rem .9rem; font-size:.88rem; line-height:1.55}
+.cbt-msj.bot{background:#fff; border:1px solid var(--line); border-left:3px solid var(--copper-600); align-self:flex-start; color:var(--ink)}
+.cbt-msj.user{background:var(--navy-800); color:#fff; align-self:flex-end}
+.cbt-msj.acil{background:#FCEBEB; border:1px solid #F09595; border-left:3px solid #A32D2D; color:#791F1F}
+.cbt-msj.acil a{color:#A32D2D; font-weight:800; text-decoration:underline}
+.cbt-msj a{color:var(--navy-600); font-weight:700; text-decoration:underline}
+.cbt-msj .cbt-linkbtn{
+  display:block; margin-top:.5rem; padding:.5rem .8rem; text-align:center;
+  background:var(--copper-600); color:#fff; font-weight:700; font-size:.84rem; text-decoration:none;
+}
+.cbt-msj .cbt-linkbtn:hover{background:var(--copper-700)}
+.cbt-msj .cbt-linkbtn.dis{background:#fff; color:var(--navy-800); border:1px solid var(--line)}
+.cbt-msj .cbt-linkbtn.dis:hover{background:var(--navy-50)}
+
+.cbt-hizli{display:flex; flex-wrap:wrap; gap:.45rem; align-self:flex-start; max-width:95%}
+.cbt-hizli button{
+  padding:.45rem .8rem; background:#fff; border:1px solid var(--navy-100);
+  color:var(--navy-800); font-weight:600; font-size:.8rem; cursor:pointer; border-radius:999px;
+  transition:.15s ease;
+}
+.cbt-hizli button:hover{border-color:var(--copper-500); background:var(--copper-50); color:var(--copper-700)}
+
+.cbt-alt{display:flex; gap:.5rem; padding:.7rem; border-top:1px solid var(--line); background:#fff}
+.cbt-alt input{
+  flex:1; min-height:44px; padding:.5rem .8rem; font:inherit; font-size:.88rem;
+  border:1.5px solid var(--line); border-radius:var(--r);
+}
+.cbt-alt input:focus{outline:none; border-color:var(--navy-600)}
+.cbt-alt button{
+  min-width:44px; min-height:44px; background:var(--copper-600); color:#fff;
+  border:0; cursor:pointer; display:grid; place-items:center;
+}
+.cbt-alt button:hover{background:var(--copper-700)}
+.cbt-alt button svg{width:18px; height:18px}
+.cbt-not{font-size:.68rem; color:var(--muted); text-align:center; padding:0 .7rem .55rem; background:#fff}
