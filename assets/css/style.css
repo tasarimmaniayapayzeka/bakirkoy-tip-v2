@@ -788,6 +788,61 @@ a.map-facade:hover{border-color:var(--copper-500)}
 .cb-band.done form{display:none}
 .cb-band.done .cb-ok{display:block}
 
+/* --- Triyaj sihirbazı --------------------------------------------------------------- */
+.tz-panel{background:#fff; border:1px solid var(--line); border-top:3px solid var(--copper-600); padding:clamp(1.5rem,3.5vw,2.25rem)}
+.tz-q{font-family:var(--ff-serif); font-size:1.3rem; color:var(--navy-900); margin-bottom:.4rem}
+.tz-sub{font-size:.9rem; color:var(--muted); margin-bottom:1.4rem}
+.tz-opts{display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:.7rem}
+.tz-opts button{
+  min-height:56px; padding:.8rem 1.1rem; text-align:left;
+  border:1px solid var(--line); background:#fff; border-radius:var(--r);
+  font-weight:600; font-size:.93rem; color:var(--ink); cursor:pointer;
+  transition:border-color .15s ease, background .15s ease;
+}
+.tz-opts button:hover{border-color:var(--copper-500); background:var(--copper-50)}
+.tz-nav{display:flex; gap:.7rem; margin-top:1.4rem}
+.tz-acil{
+  background:#FCEBEB; border:1px solid #F09595; border-left:3px solid #A32D2D;
+  padding:1rem 1.2rem; margin-bottom:1.2rem; font-size:.9rem; color:#791F1F;
+}
+.tz-acil strong{display:block; margin-bottom:.2rem}
+.tz-acil a{font-weight:800; text-decoration:underline; color:#A32D2D}
+.tz-sonuc{display:none}
+.tz-sonuc.show{display:block}
+.tz-sonuc .tz-birim{
+  display:flex; align-items:center; gap:1rem; background:var(--navy-950); color:#fff;
+  padding:1.4rem 1.5rem; border-top:3px solid var(--copper-600); margin-bottom:1.1rem;
+}
+.tz-sonuc .tz-birim .ico{width:46px; height:46px; background:var(--copper-600); display:grid; place-items:center; flex:none}
+.tz-sonuc .tz-birim .ico svg{width:22px; height:22px; color:#fff}
+.tz-sonuc .tz-birim strong{font-family:var(--ff-serif); font-size:1.25rem; display:block}
+.tz-sonuc .tz-birim span{font-size:.8rem; color:var(--on-dark-muted)}
+.tz-adim{display:none}
+.tz-adim.aktif{display:block}
+
+/* --- VKİ hesaplayıcı ----------------------------------------------------------------- */
+.calc-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(2rem,5vw,3.5rem); align-items:start}
+@media (max-width:900px){ .calc-grid{grid-template-columns:1fr} }
+.calc-sonuc{
+  background:var(--navy-950); color:#fff; border-top:3px solid var(--copper-600);
+  padding:1.75rem 1.6rem; text-align:center;
+}
+.calc-sonuc .deger{font-family:var(--ff-serif); font-size:3rem; color:var(--copper-300); line-height:1.1}
+.calc-sonuc .kat{font-size:1.05rem; font-weight:700; margin-top:.3rem}
+.calc-sonuc .not{font-size:.82rem; color:var(--on-dark-muted); margin-top:.6rem}
+.calc-bantlar{margin-top:1.25rem; border:1px solid var(--line); background:#fff}
+.calc-bantlar div{
+  display:flex; justify-content:space-between; padding:.7rem 1.1rem;
+  font-size:.9rem; border-bottom:1px solid var(--line); color:var(--ink-2);
+}
+.calc-bantlar div:last-child{border-bottom:0}
+.calc-bantlar div.aktif{background:var(--copper-50); font-weight:700; color:var(--copper-700); border-left:3px solid var(--copper-600)}
+
+/* --- Dosya yükleme alanı -------------------------------------------------------------- */
+.field input[type="file"]{
+  padding:.55rem .7rem; border-style:dashed; background:var(--bg-2); font-size:.88rem;
+}
+
 /* --- 404 -------------------------------------------------------------------------- */
 .nf{min-height:52vh; display:grid; place-items:center; text-align:center; padding:clamp(3rem,8vw,6rem) var(--gut)}
 .nf .code{font-family:var(--ff-serif); font-size:clamp(4rem,10vw,7rem); color:var(--navy-100); line-height:1}
