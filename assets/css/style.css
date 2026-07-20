@@ -468,8 +468,14 @@ a.map-facade:hover{border-color:var(--copper-500)}
   background:#fff; border:1px solid var(--line); border-top:3px solid var(--copper-600);
   padding:clamp(1.5rem,3.5vw,2.25rem);
 }
-.form-title{font-size:1.3rem; margin-bottom:.4rem}
-.form-sub{font-size:.9rem; color:var(--muted); margin-bottom:1.4rem}
+.form-title{font-size:1.4rem; margin-bottom:.4rem; color:var(--navy-900)}
+.form-sub{font-size:.92rem; color:var(--ink-2); margin-bottom:1.4rem}
+/* Koyu bölüm içindeki beyaz kartlarda bölüm renkleri sızmasın */
+.form-card{color:var(--ink)}
+.section--dark .form-card p:not(.hint){color:var(--ink-2)}
+.section--dark .form-card .form-title{color:var(--navy-900)}
+.section--dark .form-ok{color:var(--ink)}
+.section--dark .form-ok p{color:var(--ink-2)}
 .field{margin-bottom:1.1rem}
 .field label{
   display:block; font-size:.8rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
