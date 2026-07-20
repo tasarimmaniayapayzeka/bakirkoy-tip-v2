@@ -69,6 +69,9 @@
   flex:1; min-height:44px; padding:.5rem .8rem; font:inherit; font-size:.88rem;
   border:1.5px solid var(--line); border-radius:var(--r);
 }
+@media (max-width:900px){
+  .cbt-alt input{font-size:1rem} /* iOS odakta otomatik yakınlaştırmayı önler */
+}
 .cbt-alt input:focus{outline:none; border-color:var(--navy-600)}
 .cbt-alt button{
   min-width:44px; min-height:44px; background:var(--copper-600); color:#fff;
