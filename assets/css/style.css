@@ -46,6 +46,7 @@
 
 /* --- Reset -------------------------------------------------------------- */
 *,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none !important}
 html{-webkit-text-size-adjust:100%; scroll-behavior:smooth; scroll-padding-top:120px}
 body{
   margin:0; font-family:var(--ff); color:var(--ink); background:var(--bg);

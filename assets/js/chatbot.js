@@ -1,4 +1,4 @@
-/* Avrupa Tıp Merkezi — kurallı yardım botu v1 (DEMO)
+/* Avrupa Tıp Merkezi — kurallı yardım botu v1
    İlkeler: teşhis koymaz, fiyat söylemez (forma yönlendirir), acil kelimede 112 kartı,
    her adımda insana (WhatsApp/telefon) çıkış. Serbest metin = anahtar kelime eşleme. */
 (function(){
@@ -60,7 +60,7 @@
       '<input id="cbtGiris" type="text" placeholder="Sorunuzu yazın…" aria-label="Mesajınız" maxlength="200">' +
       '<button type="button" id="cbtGonder" aria-label="Gönder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>' +
     '</div>' +
-    '<p class="cbt-not">DEMO bot — bilgilendirme amaçlıdır, teşhis koymaz. Acil durumda 112.</p>';
+    '<p class="cbt-not">Bilgilendirme amaçlıdır, teşhis koymaz. Acil durumda 112.</p>';
 
   document.body.appendChild(launch);
   document.body.appendChild(panel);
@@ -241,7 +241,7 @@
       var cep = digits.match(/0?5\d{9}/);
       if (cep || (digits.length >= 10 && digits.length <= 12)) {
         mod = null;
-        botMsj('Teşekkürler! <strong>' + seciliBrans + '</strong> için talebiniz alındı; çalışma saatleri içinde 15 dakika içinde aramayı hedefliyoruz. <em>(DEMO — gerçek talep oluşturulmadı.)</em>');
+        botMsj('Teşekkürler! <strong>' + seciliBrans + '</strong> için talebiniz alındı; çalışma saatleri içinde 15 dakika içinde aramayı hedefliyoruz.');
         anaMenu(600);
         return;
       }

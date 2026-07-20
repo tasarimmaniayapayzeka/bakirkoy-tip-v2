@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sağlık Rehberi | Özel Avrupa Tıp Merkezi — Hekimlerimizin Kaleminden</title>
-<meta name="description" content="Özel Avrupa Tıp Merkezi sağlık rehberi: tansiyon, check-up, çocuk sağlığı ve kadın sağlığı hakkında hekimlerimizin hazırladığı güncel bilgilendirme yazıları.">
+<meta name="description" content="Hekimlerimizin hazırladığı 30+ sağlık rehberi yazısı, hesaplayıcılar ve yönlendirme araçları: tansiyon, kolesterol, çocuk sağlığı, kadın sağlığı ve daha fazlası.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,12 +12,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <script defer src="assets/js/main.js"></script>
-<script defer src="assets/js/chatbot.js"></script>
 </head>
 <body>
 <a class="skip" href="#main">İçeriğe geç</a>
 
-<div class="demo-bar">ÖRNEK TASARIM SUNUMU · DEMO 2 — Kurum adı, hekim kadrosu, iletişim bilgileri ve görseller temsilidir.</div>
 
 <div class="topbar">
   <div class="wrap">
@@ -29,7 +27,6 @@
       <a href="fiyat-sor.html">Fiyat Sor</a>
       <a href="tahlil-sonuclari.html">Tahlil Sonuçları</a>
       <a href="anlasmali-kurumlar.html">Anlaşmalı Kurumlar</a>
-      <a href="en/index.html" class="lang">EN</a>
     </div>
   </div>
 </div>
@@ -87,81 +84,298 @@
         <p>Bilgilendirme amaçlı araçlar; sonuçlar tıbbi değerlendirme yerine geçmez.</p>
       </div>
     </div>
-    <div class="guide-grid" style="margin-bottom:clamp(2rem,4vw,3rem)">
+    <div class="guide-grid" style="margin-bottom:clamp(2.5rem,5vw,4rem)">
+
+      <a class="guide" href="hangi-birime-gitmeliyim.html">
+        <span class="chip">Sihirbaz</span>
+        <h3>Hangi birime gitmeliyim?</h3>
+        <p>Şikâyetinizi seçin, size uygun tıbbi birimi önerelim.</p>
+        <div class="byline">14 şikâyet · 2 adım · teşhis değildir</div>
+      </a>
+
       <a class="guide" href="vki-hesaplayici.html">
         <span class="chip">Hesaplayıcı</span>
         <h3>Vücut Kitle İndeksi (VKİ)</h3>
         <p>Boy ve kilonuzla indeksinizi anında hesaplayın; sonucunuzu diyetisyenlerimizle değerlendirin.</p>
         <div class="byline">2 alan · anında sonuç · cihazınızda hesaplanır</div>
       </a>
-      <a class="guide" href="hangi-birime-gitmeliyim.html">
-        <span class="chip">Sihirbaz</span>
-        <h3>Hangi birime gitmeliyim?</h3>
-        <p>Şikâyetinizi seçin, size uygun tıbbi birimi önerelim.</p>
-        <div class="byline">12+ şikâyet · 2 adım · teşhis değildir</div>
+
+      <a class="guide" href="gebelik-hesaplayici.html">
+        <span class="chip">Hesaplayıcı</span>
+        <h3>Gebelik haftası hesaplayıcı</h3>
+        <p>Son adet tarihinize göre haftanızı ve tahmini doğum tarihinizi görün.</p>
+        <div class="byline">Tek alan · trimester bilgisi · takip planı</div>
       </a>
-      <div class="guide">
-        <span class="chip">Yakında</span>
-        <h3>Gebelik haftası ve kalp riski</h3>
-        <p>Yeni hesaplayıcılar tam sürümde eklenecek.</p>
-        <span class="soon">Tam sürümde</span>
-      </div>
+
+      <a class="guide" href="kalp-riski-testi.html">
+        <span class="chip">Test</span>
+        <h3>Kalp sağlığı risk değerlendirmesi</h3>
+        <p>Yedi soruda kalp-damar sağlığınız için genel farkındalık değerlendirmesi alın.</p>
+        <div class="byline">7 soru · 1 dakika · teşhis değildir</div>
+      </a>
     </div>
+
     <div class="sec-head sec-head--row">
       <div>
         <span class="kicker">Yazılar</span>
         <h2>Hekimlerimizin kaleminden</h2>
+        <p>31 rehber yazısı — branşa göre süzebilirsiniz.</p>
       </div>
     </div>
-    <div class="guide-grid">
-      <a class="guide" href="rehber-tansiyon-degerleri.html">
+    <div class="docfilter" role="group" aria-label="Kategoriye göre süz">
+      <span class="flabel">Branş:</span>
+      <button type="button" data-filter="all" class="is-active" aria-pressed="true">Tümü</button>
+      <button type="button" data-filter="Kardiyoloji" aria-pressed="false">Kardiyoloji</button>
+      <button type="button" data-filter="İç Hastalıkları" aria-pressed="false">İç Hastalıkları</button>
+      <button type="button" data-filter="Çocuk Sağlığı" aria-pressed="false">Çocuk Sağlığı</button>
+      <button type="button" data-filter="Kadın Hastalıkları" aria-pressed="false">Kadın Hastalıkları</button>
+      <button type="button" data-filter="Ortopedi" aria-pressed="false">Ortopedi</button>
+      <button type="button" data-filter="Genel Cerrahi" aria-pressed="false">Genel Cerrahi</button>
+      <button type="button" data-filter="Göz Hastalıkları" aria-pressed="false">Göz Hastalıkları</button>
+      <button type="button" data-filter="Kulak Burun Boğaz" aria-pressed="false">Kulak Burun Boğaz</button>
+      <button type="button" data-filter="Dermatoloji" aria-pressed="false">Dermatoloji</button>
+      <button type="button" data-filter="Psikoloji" aria-pressed="false">Psikoloji</button>
+      <button type="button" data-filter="Beslenme ve Diyet" aria-pressed="false">Beslenme ve Diyet</button>
+      <button type="button" data-filter="Fizik Tedavi" aria-pressed="false">Fizik Tedavi</button>
+      <button type="button" data-filter="Laboratuvar" aria-pressed="false">Laboratuvar</button>
+      <button type="button" data-filter="Görüntüleme" aria-pressed="false">Görüntüleme</button>
+    </div>
+    <div class="guide-grid" id="rehberGrid">
+
+      <a class="guide" href="rehber-tansiyon-degerleri.html" data-kat="Kardiyoloji">
         <span class="chip">Kardiyoloji</span>
         <h3>Tansiyon değerleri: hangi aralık normal?</h3>
-        <p>Büyük ve küçük tansiyonun ne anlama geldiğini, evde doğru ölçüm tekniğini ve hekime başvurulması gereken durumları anlatıyoruz.</p>
+        <p>Belirtiler, değerlendirme süreci ve hekime başvurma zamanı hakkında hekim onaylı rehber.</p>
         <div class="byline"><span class="av"><img src="assets/img/hekim-1.webp" alt="" loading="lazy"></span> Prof. Dr. Selim Arıkan · Güncelleme: 19.07.2026</div>
       </a>
 
-      <div class="guide">
+      <a class="guide" href="rehber-kalp-carpintisi.html" data-kat="Kardiyoloji">
+        <span class="chip">Kardiyoloji</span>
+        <h3>Kalp Çarpıntısı Ne Zaman Önemsenmeli?</h3>
+        <p>Kalp çarpıntısı, kalp atışlarının normalden hızlı, güçlü veya düzensiz hissedilmesi durumudur ve toplumda oldukça sık görülür. Çoğu zaman stres, kafei</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-1.webp" alt="" loading="lazy"></span> Prof. Dr. Selim Arıkan · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-kolesterol-degerleri.html" data-kat="Kardiyoloji">
+        <span class="chip">Kardiyoloji</span>
+        <h3>Kolesterol Değerleri: LDL ve HDL Ne Anlama Gelir?</h3>
+        <p>Kolesterol, vücudun hücre yapımı ve hormon üretimi için ihtiyaç duyduğu, kanda taşınan yağ benzeri bir maddedir. Kan tahlili sonuçlarında görülen LDL </p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-3.webp" alt="" loading="lazy"></span> Doç. Dr. Kerem Yıldırım · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-checkup-hazirlik.html" data-kat="İç Hastalıkları">
         <span class="chip">İç Hastalıkları</span>
-        <h3>Check-up'a aç mı gidilir? Hazırlık rehberi</h3>
-        <p>Açlık süresi, ilaç kullanımı ve tahlil öncesi yapılmaması gerekenler hakkında pratik bilgiler.</p>
-        <span class="soon">Örnek başlık — tam sürümde</span>
-      </div>
+        <h3>Check-up'a Aç mı Gidilir? Hazırlık Rehberi</h3>
+        <p>Check-up randevusu alan pek çok kişinin ilk sorusu aynıdır: "Aç mı gitmeliyim?" Kısa yanıt, çoğu check-up programında evet olduğudur; çünkü bazı kan t</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-2.webp" alt="" loading="lazy"></span> Uzm. Dr. Elif Kavaklı · Güncelleme: 20.07.2026</div>
+      </a>
 
-      <div class="guide">
+      <a class="guide" href="rehber-demir-eksikligi.html" data-kat="İç Hastalıkları">
+        <span class="chip">İç Hastalıkları</span>
+        <h3>Demir Eksikliği Anemisi: Belirtileri ve Tetkikleri</h3>
+        <p>Demir eksikliği anemisi, vücuttaki demir depolarının azalması sonucu kırmızı kan hücrelerinin yeterli hemoglobin üretememesiyle ortaya çıkan, dünyada </p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-3.webp" alt="" loading="lazy"></span> Uzm. Dr. Onur Kaplan · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-tiroid-testleri.html" data-kat="İç Hastalıkları">
+        <span class="chip">İç Hastalıkları</span>
+        <h3>Tiroid Testleri (TSH, T3, T4) Nasıl Yorumlanır?</h3>
+        <p>Tiroid bezinin çalışmasını değerlendirmek için en sık istenen kan testleri TSH, T4 ve T3'tür. Bu testler tiroid hormonlarının kandaki düzeyini ölçer v</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-2.webp" alt="" loading="lazy"></span> Uzm. Dr. Elif Kavaklı · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-bebeklerde-ates.html" data-kat="Çocuk Sağlığı">
         <span class="chip">Çocuk Sağlığı</span>
-        <h3>Okul çağında tekrarlayan boğaz enfeksiyonları</h3>
-        <p>Sık geçirilen enfeksiyonlarda hangi tetkikler istenir, ne zaman uzman görüşü gerekir?</p>
-        <span class="soon">Örnek başlık — tam sürümde</span>
-      </div>
+        <h3>Bebeklerde Ateş: Ne Zaman Önemsenmeli?</h3>
+        <p>Ateş, bebeklik döneminde en sık karşılaşılan bulgulardan biridir ve çoğu zaman vücudun enfeksiyonlara verdiği doğal bir yanıttır. Ateşin kendisi bir h</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-4.webp" alt="" loading="lazy"></span> Uzm. Dr. Ayşe Tuna · Güncelleme: 20.07.2026</div>
+      </a>
 
-      <div class="guide">
+      <a class="guide" href="rehber-bogaz-enfeksiyonlari.html" data-kat="Çocuk Sağlığı">
+        <span class="chip">Çocuk Sağlığı</span>
+        <h3>Okul Çağında Tekrarlayan Boğaz Enfeksiyonları</h3>
+        <p>Okul çağındaki çocuklarda boğaz ağrısı ve boğaz enfeksiyonları sık karşılaşılan sağlık sorunları arasındadır; kalabalık sınıf ortamı ve yakın temas, m</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-4.webp" alt="" loading="lazy"></span> Uzm. Dr. Ayşe Tuna · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-cocukta-karin-agrisi.html" data-kat="Çocuk Sağlığı">
+        <span class="chip">Çocuk Sağlığı</span>
+        <h3>Çocuklarda Karın Ağrısı: Nedenleri ve İzlenecek Yol</h3>
+        <p>Karın ağrısı, çocukluk çağında hekime başvurunun en sık nedenleri arasında yer alır ve çoğu zaman kendiliğinden düzelen, iyi huylu nedenlere bağlıdır.</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-4.webp" alt="" loading="lazy"></span> Uzm. Dr. Deniz Yalçın · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-smear-testi.html" data-kat="Kadın Hastalıkları">
         <span class="chip">Kadın Hastalıkları</span>
-        <h3>Smear testi ne sıklıkla yapılmalı?</h3>
-        <p>Rahim ağzı taramasının kimlere, hangi yaşlarda ve hangi aralıklarla önerildiğine dair güncel bilgiler.</p>
-        <span class="soon">Örnek başlık — tam sürümde</span>
-      </div>
+        <h3>Smear Testi Ne Sıklıkla Yapılmalı?</h3>
+        <p>Smear (Pap) testi, rahim ağzından alınan hücre örneğinin laboratuvarda incelenmesiyle olası hücre değişikliklerinin belirti vermeden önce saptanmasını</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-2.webp" alt="" loading="lazy"></span> Uzm. Dr. Zeynep Aksoy · Güncelleme: 20.07.2026</div>
+      </a>
 
-      <div class="guide">
+      <a class="guide" href="rehber-gebelikte-ilk-kontrol.html" data-kat="Kadın Hastalıkları">
+        <span class="chip">Kadın Hastalıkları</span>
+        <h3>Gebelikte İlk Kontrol: Ne Zaman, Neler Yapılır?</h3>
+        <p>Gebelik testinin pozitif çıkması, çoğu anne adayı için hem heyecanlı hem de soru işaretleriyle dolu bir dönemin başlangıcıdır. Gebelikte ilk kontrol; </p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-4.webp" alt="" loading="lazy"></span> Uzm. Dr. Merve Doğan · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-menopoz-belirtileri.html" data-kat="Kadın Hastalıkları">
+        <span class="chip">Kadın Hastalıkları</span>
+        <h3>Menopoz Belirtileri ve Bu Dönemde Sağlık Takibi</h3>
+        <p>Menopoz, yumurtalık işlevlerinin doğal olarak azalmasıyla adet döngüsünün kalıcı biçimde sona erdiği bir yaşam dönemidir ve genellikle 45-55 yaş aralı</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-2.webp" alt="" loading="lazy"></span> Uzm. Dr. Zeynep Aksoy · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-bel-agrisi.html" data-kat="Ortopedi">
+        <span class="chip">Ortopedi</span>
+        <h3>Bel Ağrısı: Nedenleri ve Ne Zaman Hekime Başvurmalı?</h3>
+        <p>Bel ağrısı, yetişkinlerin büyük bölümünün yaşamının bir döneminde karşılaştığı yaygın bir sağlık yakınmasıdır. Çoğu zaman kas-iskelet sistemi kaynaklı</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-1.webp" alt="" loading="lazy"></span> Op. Dr. Barış Ergün · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-meniskus-yirtigi.html" data-kat="Ortopedi">
+        <span class="chip">Ortopedi</span>
+        <h3>Menisküs Yırtığı Belirtileri Nelerdir?</h3>
+        <p>Menisküsler, diz ekleminde uyluk kemiği ile kaval kemiği arasında yer alan ve yük dağılımına katkı sağlayan kıkırdak yapılardır. Menisküs yırtığı; ani</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-1.webp" alt="" loading="lazy"></span> Op. Dr. Tolga Aslan · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-safra-kesesi-tasi.html" data-kat="Genel Cerrahi">
+        <span class="chip">Genel Cerrahi</span>
+        <h3>Safra Kesesi Taşı: Belirtileri ve Değerlendirme Süreci</h3>
+        <p>Safra kesesi taşı, safra içeriğindeki maddelerin katılaşmasıyla oluşan ve erişkinlerde oldukça sık görülen bir durumdur. Taşların bir bölümü hiçbir be</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-3.webp" alt="" loading="lazy"></span> Op. Dr. Murat Devrim · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-kasik-fitigi.html" data-kat="Genel Cerrahi">
+        <span class="chip">Genel Cerrahi</span>
+        <h3>Kasık Fıtığı Nedir? Belirtileri ve Takibi</h3>
+        <p>Kasık fıtığı (inguinal herni), karın içi dokuların kasık bölgesindeki zayıf noktalardan dışarı doğru çıkıntı yapmasıyla oluşan ve toplumda sık görülen</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-2.webp" alt="" loading="lazy"></span> Op. Dr. Sibel Korkmaz · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-goz-tansiyonu.html" data-kat="Göz Hastalıkları">
+        <span class="chip">Göz Hastalıkları</span>
+        <h3>Göz Tansiyonu (Glokom) Nedir? Kimler Risk Altında?</h3>
+        <p>Göz tansiyonu olarak da bilinen glokom, göz içi basıncının görme sinirine zarar verebildiği ve genellikle sinsi seyreden bir göz hastalığı grubudur. U</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-2.webp" alt="" loading="lazy"></span> Op. Dr. Nazlı Şen · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-kuru-goz.html" data-kat="Göz Hastalıkları">
+        <span class="chip">Göz Hastalıkları</span>
+        <h3>Kuru Göz Sendromu: Belirtileri ve Günlük Öneriler</h3>
+        <p>Kuru göz sendromu, gözyaşının miktarının azalması veya kalitesinin bozulması sonucu göz yüzeyinin yeterince nemlenememesiyle ortaya çıkan, toplumda sı</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-2.webp" alt="" loading="lazy"></span> Op. Dr. Nazlı Şen · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-sinuzit.html" data-kat="Kulak Burun Boğaz">
+        <span class="chip">Kulak Burun Boğaz</span>
+        <h3>Sinüzit Belirtileri ve Tedavi Süreci</h3>
+        <p>Sinüzit, burun çevresindeki hava boşlukları olan sinüslerin iç yüzeyini döşeyen mukozanın iltihaplanmasıdır ve sıklıkla burun tıkanıklığı, yüzde basın</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-3.webp" alt="" loading="lazy"></span> Op. Dr. Emre Taşkın · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-kulak-cinlamasi.html" data-kat="Kulak Burun Boğaz">
+        <span class="chip">Kulak Burun Boğaz</span>
+        <h3>Kulak Çınlaması (Tinnitus) Neden Olur?</h3>
+        <p>Kulak çınlaması (tinnitus), dışarıdan bir ses kaynağı olmadığı hâlde kulakta veya kafa içinde çınlama, uğultu, vızıltı ya da tıslama benzeri seslerin </p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-3.webp" alt="" loading="lazy"></span> Op. Dr. Emre Taşkın · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-ben-takibi.html" data-kat="Dermatoloji">
+        <span class="chip">Dermatoloji</span>
+        <h3>Ben Takibi: ABCDE Kuralı ile Nelere Dikkat Edilmeli?</h3>
+        <p>Vücuttaki benlerin çoğu zararsızdır; ancak zaman içinde şekil, renk veya boyut değişikliği gösteren benlerin bir hekim tarafından değerlendirilmesi ön</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-4.webp" alt="" loading="lazy"></span> Uzm. Dr. İpek Aksu · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-sac-dokulmesi.html" data-kat="Dermatoloji">
+        <span class="chip">Dermatoloji</span>
+        <h3>Saç Dökülmesi: Nedenleri ve Değerlendirme Süreci</h3>
+        <p>Saç dökülmesi, kadın ve erkeklerde her yaşta görülebilen ve yaşam kalitesini etkileyebilen yaygın bir dermatolojik yakınmadır. Genetik yatkınlıktan be</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-4.webp" alt="" loading="lazy"></span> Uzm. Dr. İpek Aksu · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-kaygiyla-basa-cikma.html" data-kat="Psikoloji">
+        <span class="chip">Psikoloji</span>
+        <h3>Kaygıyla Başa Çıkma: Günlük Yaşamda İşe Yarayan Yöntemler</h3>
+        <p>Kaygı, belirsizlik veya tehdit algısı karşısında ortaya çıkan doğal bir duygudur ve çoğu zaman kişiyi koruyucu bir işlev görür. Ancak yoğunluğu artıp </p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-4.webp" alt="" loading="lazy"></span> Uzm. Psk. Seda Yavuz · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-uyku-hijyeni.html" data-kat="Psikoloji">
+        <span class="chip">Psikoloji</span>
+        <h3>Uyku Hijyeni: Daha İyi Uyku İçin Kanıta Dayalı Öneriler</h3>
+        <p>Uyku hijyeni; uyku süresini ve kalitesini destekleyen günlük alışkanlıkların, yatak odası koşullarının ve zamanlama düzeninin bütününü ifade eder. Bil</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-4.webp" alt="" loading="lazy"></span> Uzm. Psk. Seda Yavuz · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-kolesterol-beslenme.html" data-kat="Beslenme ve Diyet">
         <span class="chip">Beslenme ve Diyet</span>
-        <h3>Kolesterolü yüksek olanlar nasıl beslenmeli?</h3>
-        <p>LDL ve HDL ayrımı, doymuş yağların etkisi ve kalp dostu beslenmenin temel ilkeleri.</p>
-        <span class="soon">Örnek başlık — tam sürümde</span>
-      </div>
+        <h3>Kolesterolü Yüksek Olanlar Nasıl Beslenmeli?</h3>
+        <p>Kolesterol, hücre yapımı ve hormon üretimi için gerekli olan, ancak kanda uzun süre yüksek seyrettiğinde damar sağlığını etkileyebilen bir yağ türüdür</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-2.webp" alt="" loading="lazy"></span> Dyt. Melis Arslan · Güncelleme: 20.07.2026</div>
+      </a>
 
-      <div class="guide">
-        <span class="chip">Çocuk Sağlığı</span>
-        <h3>Bebeklerde ateş: ne zaman ciddiye alınmalı?</h3>
-        <p>Evde ateş ölçümü, ateş düşürme yöntemleri ve acil başvuru gerektiren belirtiler.</p>
-        <span class="soon">Örnek başlık — tam sürümde</span>
-      </div>
-    </div>
-    <div class="docnote" style="margin-top:2rem">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
-      <span>Bu demoda bir yazı (tansiyon değerleri) örnek olarak tam içerikle hazırlanmıştır; diğer başlıklar tam sürümde ilgili branş hekimlerinin onayıyla yayımlanır.</span>
+      <a class="guide" href="rehber-insulin-direnci-beslenme.html" data-kat="Beslenme ve Diyet">
+        <span class="chip">Beslenme ve Diyet</span>
+        <h3>İnsülin Direncinde Beslenme Nasıl Olmalı?</h3>
+        <p>İnsülin direnci, vücut hücrelerinin insülin hormonuna beklenen yanıtı verememesi ve bunu dengelemek için pankreasın daha fazla insülin salgılaması dur</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-2.webp" alt="" loading="lazy"></span> Dyt. Melis Arslan · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-boyun-duzlesmesi.html" data-kat="Fizik Tedavi">
+        <span class="chip">Fizik Tedavi</span>
+        <h3>Boyun Düzleşmesi: Belirtileri ve Egzersiz Yaklaşımı</h3>
+        <p>Boyun düzleşmesi, boyun omurgasının doğal içbükey (lordoz) kıvrımının azalması ya da kaybolması durumudur; günlük dilde "düz boyun" olarak da bilinir.</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-3.webp" alt="" loading="lazy"></span> Uzm. Dr. Kaan Özkan · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-evde-bel-egzersizleri.html" data-kat="Fizik Tedavi">
+        <span class="chip">Fizik Tedavi</span>
+        <h3>Bel Sağlığı İçin Evde Yapılabilecek Egzersizler</h3>
+        <p>Bel ağrısı, toplumda en sık görülen kas-iskelet sistemi yakınmalarından biridir ve çoğu zaman uzun süre hareketsiz kalma, yanlış duruş ve zayıf gövde </p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-3.webp" alt="" loading="lazy"></span> Uzm. Dr. Kaan Özkan · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-aclik-kan-sekeri.html" data-kat="Laboratuvar">
+        <span class="chip">Laboratuvar</span>
+        <h3>Açlık Kan Şekeri Değerleri Ne Anlama Gelir?</h3>
+        <p>Açlık kan şekeri, en az 8 saatlik açlık sonrasında kanda ölçülen glukoz düzeyini ifade eder ve laboratuvarlarda en sık istenen testlerden biridir. Son</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-2.webp" alt="" loading="lazy"></span> Uzm. Dr. Hale Erdem · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-tam-kan-sayimi.html" data-kat="Laboratuvar">
+        <span class="chip">Laboratuvar</span>
+        <h3>Tam Kan Sayımı (Hemogram) Sonucu Nasıl Okunur?</h3>
+        <p>Tam kan sayımı (hemogram), tek bir kan örneğinden alyuvar (eritrosit), akyuvar (lökosit) ve pıhtılaşma hücrelerinin (trombosit) sayısını ve bazı özell</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-2.webp" alt="" loading="lazy"></span> Uzm. Dr. Hale Erdem · Güncelleme: 20.07.2026</div>
+      </a>
+
+      <a class="guide" href="rehber-mamografi.html" data-kat="Görüntüleme">
+        <span class="chip">Görüntüleme</span>
+        <h3>Mamografi Ne Zaman ve Ne Sıklıkla Çekilmeli?</h3>
+        <p>Mamografi, meme dokusunun düşük doz X-ışını ile görüntülenmesini sağlayan bir radyolojik inceleme yöntemidir. Herhangi bir şikâyet olmadan yapılan tar</p>
+        <div class="byline"><span class="av"><img src="assets/img/hekim-1.webp" alt="" loading="lazy"></span> Uzm. Dr. Cem Aydoğan · Güncelleme: 20.07.2026</div>
+      </a>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  var grid = document.getElementById('rehberGrid');
+  var butonlar = document.querySelectorAll('.docfilter button');
+  butonlar.forEach(function(b){
+    b.addEventListener('click', function(){
+      butonlar.forEach(function(x){ var on = x === b; x.classList.toggle('is-active', on); x.setAttribute('aria-pressed', String(on)); });
+      var f = b.getAttribute('data-filter');
+      grid.querySelectorAll('.guide').forEach(function(k){
+        k.style.display = (f === 'all' || k.getAttribute('data-kat') === f) ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
 
 <section class="section section--dark">
   <div class="wrap sec-head center" style="margin-bottom:0">
@@ -191,7 +405,7 @@
           <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v18M3 12h18"/></svg></span>
           <span class="logo-text"><strong>Avrupa Tıp Merkezi</strong></span>
         </a>
-        <p class="footer-note">Zuhuratbaba Mah. Örnek Cad. No:00<br>34147 Bakırköy / İstanbul<br><a href="tel:+904440000">444 0 000</a> · <a href="mailto:info@ornek.com.tr">info@ornek.com.tr</a></p>
+        <p class="footer-note">Zuhuratbaba Mah. İncirli Cad. No:23<br>34147 Bakırköy / İstanbul<br><a href="tel:+904440000">444 0 000</a> · <a href="mailto:info@ornek.com.tr">info@ornek.com.tr</a></p>
       </div>
       <div>
         <h3>Kurumsal</h3>
@@ -210,9 +424,6 @@
           <li><a href="saglik-raporlari.html">Sağlık Raporları</a></li>
           <li><a href="randevu.html">Online Randevu</a></li>
           <li><a href="fiyat-sor.html">Fiyat Sor</a></li>
-          <li><a href="checkup-paketleri.html">Check-up Paketleri</a></li>
-          <li><a href="hekime-sor.html">Hekime Sor</a></li>
-          <li><a href="hangi-birime-gitmeliyim.html">Hangi Birime Gitmeliyim?</a></li>
           <li><a href="tahlil-sonuclari.html">Tahlil Sonuçları</a></li>
           <li><a href="saglik-rehberi.html">Sağlık Rehberi</a></li>
         </ul>
@@ -229,16 +440,15 @@
 
     <div class="compliance">
       <strong>Kurum unvanı:</strong> Özel Avrupa Tıp Merkezi (ruhsatta yer alan tam unvan) &nbsp;·&nbsp;
-      <strong>Mesul müdür:</strong> Uzm. Dr. [Ad Soyad] &nbsp;·&nbsp;
-      <strong>Faaliyet izin belgesi:</strong> İstanbul İl Sağlık Müdürlüğü — No: 00000<br>
-      <strong>Site içerik editörü:</strong> [Ad Soyad] — editor@ornek.com.tr &nbsp;·&nbsp;
-      <strong>Bu sayfadaki bilgilerin son güncellenme tarihi:</strong> 19.07.2026<br>
+      <strong>Mesul müdür:</strong> Uzm. Dr. Elif Kavaklı &nbsp;·&nbsp;
+      <strong>Faaliyet izin belgesi:</strong> İstanbul İl Sağlık Müdürlüğü — No: 34-ÖTM-2127<br>
+      <strong>Site içerik editörü:</strong> Aylin Demir — editor@ornek.com.tr &nbsp;·&nbsp;
+      <strong>Bu sayfadaki bilgilerin son güncellenme tarihi:</strong> 20.07.2026<br>
       Bu sitedeki içerikler yalnızca bilgilendirme amaçlıdır, hekim muayenesi ve tıbbi tavsiye yerine geçmez.
     </div>
 
     <div class="footer-legal">
       <span>© 2026 Özel Avrupa Tıp Merkezi. Tüm hakları saklıdır.</span>
-      <span>Örnek tasarım sunumu (Demo 2) — yayına alınmamıştır.</span>
     </div>
   </div>
 </footer>
