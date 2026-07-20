@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KVKK Aydınlatma Metni | Özel Avrupa Tıp Merkezi</title>
-<meta name="description" content="6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Özel Avrupa Tıp Merkezi aydınlatma metni, çerez politikası ve başvuru yolları.">
+<title>KVKK Başvuru Formu | Özel Avrupa Tıp Merkezi — Veri Sahibi Başvurusu</title>
+<meta name="description" content="6698 sayılı KVKK'nın 11. maddesi kapsamındaki haklarınızı kullanmak için veri sorumlusuna başvuru formu. Başvurular en geç 30 gün içinde yanıtlanır.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,11 +12,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <script defer src="assets/js/main.js"></script>
-<script defer src="assets/js/chatbot.js"></script>
+<style>
+.kb-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(2rem,5vw,3.5rem); align-items:start}
+@media (max-width:900px){ .kb-grid{grid-template-columns:1fr} }
+</style>
 </head>
 <body>
 <a class="skip" href="#main">İçeriğe geç</a>
-
 
 <div class="topbar">
   <div class="wrap">
@@ -28,7 +30,6 @@
       <a href="fiyat-sor.html">Fiyat Sor</a>
       <a href="tahlil-sonuclari.html">Tahlil Sonuçları</a>
       <a href="anlasmali-kurumlar.html">Anlaşmalı Kurumlar</a>
-      <a href="en/index.html" class="lang">EN</a>
     </div>
   </div>
 </div>
@@ -70,62 +71,108 @@
   <div class="wrap">
     <nav class="crumbs" aria-label="Konum">
       <a href="index.html">Ana Sayfa</a><span>›</span>
-      <span aria-current="page">KVKK</span>
+      <span aria-current="page">KVKK Başvuru Formu</span>
     </nav>
-    <h1>Kişisel Verilerin Korunması</h1>
-    <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, veri sorumlusu sıfatıyla kişisel verilerinizin işlenmesine ilişkin aydınlatma metnidir.</p>
+    <h1>Veri Sahibi Başvuru Formu</h1>
+    <p>6698 sayılı Kişisel Verilerin Korunması Kanunu'nun 11. maddesi kapsamındaki haklarınızı kullanmak için aşağıdaki formu doldurabilir veya yazılı başvuru yollarını kullanabilirsiniz. Başvurunuz en geç 30 gün içinde ücretsiz olarak yanıtlanır.</p>
   </div>
 </section>
 
 <section class="section">
-  <div class="wrap prose">
-    <span class="kicker">Aydınlatma Metni</span>
-    <h2>1. Veri sorumlusu</h2>
-    <p>Özel Avrupa Tıp Merkezi ("Merkez"), Zuhuratbaba Mah. İncirli Cad. No:23, Bakırköy / İstanbul adresinde faaliyet gösteren veri sorumlusudur.</p>
+  <div class="wrap kb-grid">
 
-    <h2>2. İşlenen kişisel veriler</h2>
-    <ul>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <strong>Kimlik bilgileri:</strong> ad-soyad, T.C. kimlik numarası, doğum tarihi</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <strong>İletişim bilgileri:</strong> telefon, e-posta, adres</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <strong>Sağlık verileri:</strong> muayene, tanı, tetkik ve tedavi kayıtları (özel nitelikli veri)</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <strong>Finansal bilgiler:</strong> fatura ve ödeme bilgileri, sigorta poliçe bilgileri</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <strong>İşlem güvenliği:</strong> web sitesi kullanımına ilişkin çerez ve trafik verileri</li>
-    </ul>
+    <div>
+      <form class="form-card js-demo-form" data-ok="formOk" action="#" method="post">
+        <h2 class="form-title">Başvuru formu</h2>
+        <p class="form-sub">Yıldızlı alanlar zorunludur. Kimliğinizi doğrulayamadığımız başvurularda ek bilgi istenebilir.</p>
+        <div class="row2">
+          <div class="field">
+            <label for="ad">Ad Soyad *</label>
+            <input id="ad" name="ad" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="tel">Telefon</label>
+            <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="05XX XXX XX XX" maxlength="14">
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="eposta">E-posta *</label>
+            <input id="eposta" name="eposta" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="iliski">Merkezimizle ilişkiniz</label>
+            <select id="iliski" name="iliski">
+              <option>Hasta / hasta yakını</option>
+              <option>Ziyaretçi (web sitesi)</option>
+              <option>Çalışan / eski çalışan</option>
+              <option>Tedarikçi</option>
+              <option>Diğer</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="talep">Talep konunuz *</label>
+          <select id="talep" name="talep" required>
+            <option value="">Seçiniz</option>
+            <option>Verilerimin işlenip işlenmediğini öğrenmek istiyorum</option>
+            <option>İşlenen verilerim hakkında bilgi talep ediyorum</option>
+            <option>Eksik/yanlış verilerimin düzeltilmesini istiyorum</option>
+            <option>Verilerimin silinmesini / yok edilmesini istiyorum</option>
+            <option>Verilerimin aktarıldığı üçüncü kişileri öğrenmek istiyorum</option>
+            <option>Otomatik işlemeye itiraz ediyorum</option>
+            <option>Zararımın giderilmesini talep ediyorum</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="aciklama">Talebinizin ayrıntısı *</label>
+          <textarea id="aciklama" name="aciklama" required placeholder="Talebinizi mümkün olduğunca açık biçimde yazın"></textarea>
+        </div>
+        <label class="consent">
+          <input type="checkbox" name="kvkk" required>
+          <span>Bu formda verdiğim bilgilerin, başvurumun değerlendirilmesi ve sonuçlandırılması amacıyla işlenmesini kabul ediyorum. <a href="kvkk.html">Aydınlatma Metni</a> *</span>
+        </label>
+        <button class="btn btn--copper btn--wide" type="submit">Başvuruyu Gönder</button>
+        <p class="hint" style="margin:.9rem 0 0; text-align:center">Başvurunuz kayıt altına alınır; sonuç tercih ettiğiniz kanaldan bildirilir.</p>
+      </form>
 
-    <h2>3. İşleme amaçları ve hukuki sebepler</h2>
-    <p>Kişisel verileriniz; randevu oluşturulması, tanı ve tedavi hizmetlerinin yürütülmesi, mevzuattan doğan bildirim yükümlülüklerinin (ör. e-Nabız, MEDULA) yerine getirilmesi, faturalandırma ve iletişim amaçlarıyla; KVKK m.5/2 (hukuki yükümlülük, sözleşmenin ifası) ve sağlık verileri bakımından m.6/3 (tıbbi teşhis, tedavi ve bakım hizmetlerinin yürütülmesi) hukuki sebeplerine dayanarak işlenir.</p>
+      <div class="form-ok" id="formOk" role="status">
+        <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <h3>Başvurunuz alındı</h3>
+        <p>Talebiniz veri sorumlusu irtibat birimimize iletildi; en geç 30 gün içinde size dönüş yapılacaktır.</p>
+      </div>
+    </div>
 
-    <h2>4. Aktarım</h2>
-    <p>Verileriniz; mevzuat gereği Sağlık Bakanlığı sistemlerine, SGK'ya, anlaşmalı sigorta şirketinize (talebiniz hâlinde) ve yasal yükümlülük kapsamında yetkili kamu kurumlarına aktarılabilir. Verileriniz yurt dışına aktarılmaz.</p>
+    <div style="display:flex; flex-direction:column; gap:1.1rem">
+      <div class="info-box">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg> Diğer başvuru yolları</h3>
+        <ul class="prof-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>Yazılı başvuru:</strong> Kimlik tespitini sağlayacak belgelerle birlikte "Zuhuratbaba Mah. İncirli Cad. No:23, 34147 Bakırköy / İstanbul" adresine elden veya noter kanalıyla</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> <span><strong>E-posta:</strong> <a href="mailto:kvkk@ornek.com.tr" style="color:var(--navy-600); font-weight:700">kvkk@ornek.com.tr</a> (sistemimizde kayıtlı e-posta adresinizden)</span></li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Süreç nasıl işler?</h3>
+        <ol class="steps" style="border:0">
+          <li style="padding:.8rem 0"><div><strong>Başvurunuz kaydedilir</strong><span>Talebiniz veri sorumlusu irtibat birimine iletilir.</span></div></li>
+          <li style="padding:.8rem 0"><div><strong>Kimlik doğrulanır</strong><span>Gerekirse ek bilgi/belge istenebilir.</span></div></li>
+          <li style="padding:.8rem 0"><div><strong>En geç 30 günde yanıt</strong><span>Sonuç, tercih ettiğiniz kanaldan ücretsiz bildirilir.</span></div></li>
+        </ol>
+      </div>
+      <div class="info-box">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Haklarınız (KVKK m.11)</h3>
+        <p style="margin:0; color:var(--ink-2); font-size:.9rem">Bilgi talep etme, düzeltme, silme, aktarım bilgisi, otomatik işlemeye itiraz ve zararın giderilmesini isteme haklarınızın tam listesi için <a href="kvkk.html" style="color:var(--navy-600); font-weight:700; text-decoration:underline">Aydınlatma Metni</a>'ni inceleyin.</p>
+      </div>
+    </div>
 
-    <h2>5. Saklama süresi</h2>
-    <p>Sağlık kayıtları, ilgili mevzuatta öngörülen süreler boyunca (kişisel sağlık kayıtlarında asgari 20 yıl) saklanır; süre sonunda mevzuata uygun şekilde imha edilir.</p>
-
-    <h2>6. KVKK m.11 kapsamındaki haklarınız</h2>
-    <ul>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Kişisel verilerinizin işlenip işlenmediğini öğrenme ve bilgi talep etme</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> İşleme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Eksik veya yanlış işlenmiş verilerin düzeltilmesini isteme</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Mevzuata uygun şekilde silinmesini veya yok edilmesini isteme</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> İşlemenin yalnızca otomatik sistemlerle yapılması nedeniyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
-    </ul>
-
-    <h2>7. Başvuru</h2>
-    <p>Başvurunuzu hızlıca iletmek için <a href="kvkk-basvuru-formu.html" style="color:var(--navy-600); font-weight:600; text-decoration:underline">online Başvuru Formu</a>'nu kullanabilirsiniz.</p>
-    <p>Taleplerinizi; kimliğinizi tevsik eden belgelerle birlikte, merkez adresimize yazılı olarak veya <a href="mailto:kvkk@ornek.com.tr" style="color:var(--navy-600); font-weight:600; text-decoration:underline">kvkk@ornek.com.tr</a> adresine iletebilirsiniz. Başvurular en geç 30 gün içinde ücretsiz olarak sonuçlandırılır.</p>
-
-    <h2>8. Çerezler</h2>
-    <p>Çerez kullanımına ilişkin ayrıntılı bilgi <a href="cerez-politikasi.html" style="color:var(--navy-600); font-weight:600; text-decoration:underline">Çerez Politikası</a> sayfasında yer alır.</p>
-    <p>Bu web sitesi yalnızca sitenin çalışması için zorunlu çerezleri kullanır; pazarlama veya profilleme amaçlı çerez kullanılmaz. Tarayıcı ayarlarınızdan çerezleri dilediğiniz zaman silebilirsiniz. (Yayın sürümünde kullanılacak analitik araçlara göre bu bölüm güncellenmelidir.)</p>
   </div>
 </section>
 
 <section class="section section--dark">
   <div class="wrap sec-head center" style="margin-bottom:0">
     <span class="kicker">Randevu</span>
-    <h2 style="color:#fff">Sorularınız için bize ulaşın</h2>
-    <p>Kişisel verilerinizin işlenmesine ilişkin her türlü sorunuzu iletişim kanallarımızdan iletebilirsiniz.</p>
+    <h2 style="color:#fff">Verileriniz güvence altında</h2>
+    <p>Kişisel verilerinizin işlenmesine ilişkin her sorunuzda veri sorumlusu irtibat birimimiz yanınızda.</p>
     <div class="hero-actions" style="justify-content:center; margin-top:1.75rem">
       <a class="btn btn--copper" href="randevu.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
@@ -168,9 +215,6 @@
           <li><a href="saglik-raporlari.html">Sağlık Raporları</a></li>
           <li><a href="randevu.html">Online Randevu</a></li>
           <li><a href="fiyat-sor.html">Fiyat Sor</a></li>
-          <li><a href="checkup-paketleri.html">Check-up Paketleri</a></li>
-          <li><a href="hekime-sor.html">Hekime Sor</a></li>
-          <li><a href="hangi-birime-gitmeliyim.html">Hangi Birime Gitmeliyim?</a></li>
           <li><a href="tahlil-sonuclari.html">Tahlil Sonuçları</a></li>
           <li><a href="saglik-rehberi.html">Sağlık Rehberi</a></li>
         </ul>
