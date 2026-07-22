@@ -217,6 +217,13 @@
 .cbt-fb button:hover{opacity:1; border-color:#C3D0DC; transform:translateY(-1px)}
 .cbt-fb-ok{font-size:11.5px; color:#2F9E6B; font-weight:700}
 
+/* ---- mobil: alt sabit CTA barının (56px) üstüne çık ---- */
+@media (max-width:900px){
+  .cbt-launch{bottom:74px; right:14px}
+  .cbt-nudge{bottom:152px; right:16px}
+  .cbt-panel{bottom:92px; max-height:calc(100dvh - 112px)}
+}
+
 /* ---- birim kartları (yatay kaydırma) ---- */
 .cbt-kartlar{display:flex; gap:8px; overflow-x:auto; padding:8px 2px 4px; margin-top:6px; scrollbar-width:thin}
 .cbt-kart{
