@@ -1,5 +1,5 @@
 <?php
-/* Avrupa Tıp Merkezi — AI chatbot köprüsü
+/* Avrupa Tıp Merkezi — AI chatbot köprüsü v2 (metin + görsel + dil)
    Anahtar sunucuda kalır (chat-config.php), tarayıcıya asla inmez.
    Kurallı korumalar (acil/fiyat/teşhis) istemcide; burada da sistem
    talimatıyla ikinci kat koruma var. */
@@ -22,35 +22,54 @@ if ($adet >= 40) { http_response_code(429); echo '{"hata":"limit"}'; exit; }
 
 $govde = json_decode(file_get_contents('php://input'), true);
 $mesajlar = $govde['mesajlar'] ?? null;
+$dil = ($govde['dil'] ?? 'tr') === 'en' ? 'en' : 'tr';
 if (!is_array($mesajlar) || count($mesajlar) < 1 || count($mesajlar) > 20) { http_response_code(400); echo '{"hata":"girdi"}'; exit; }
 
+/* görsel yalnızca SON kullanıcı mesajında iletilir (geçmişteki kopyalar atılır) */
+$sonIdx = count($mesajlar) - 1;
 $temiz = [];
-foreach ($mesajlar as $m) {
+foreach ($mesajlar as $i => $m) {
   $rol = ($m['rol'] ?? '') === 'bot' ? 'assistant' : 'user';
   $icerik = mb_substr(trim((string)($m['icerik'] ?? '')), 0, 500);
-  if ($icerik === '') continue;
-  $temiz[] = ['role' => $rol, 'content' => $icerik];
+  $gorsel = ($i === $sonIdx && $rol === 'user') ? (string)($m['gorsel'] ?? '') : '';
+  if ($icerik === '' && $gorsel === '') continue;
+  if ($gorsel !== '') {
+    if (!preg_match('#^data:image/(jpeg|png|webp);base64,#', $gorsel) || strlen($gorsel) > 1800000) {
+      http_response_code(400); echo '{"hata":"gorsel"}'; exit;
+    }
+    $parcalar = [];
+    if ($icerik !== '') $parcalar[] = ['type' => 'text', 'text' => $icerik];
+    $parcalar[] = ['type' => 'image_url', 'image_url' => ['url' => $gorsel, 'detail' => 'low']];
+    $temiz[] = ['role' => $rol, 'content' => $parcalar];
+  } else {
+    $temiz[] = ['role' => $rol, 'content' => $icerik];
+  }
 }
 if (!$temiz) { http_response_code(400); echo '{"hata":"girdi"}'; exit; }
 
+$dilKurali = $dil === 'en'
+  ? "Yanıtlarını HER ZAMAN İngilizce ver (kullanıcı İngilizce modu seçti)."
+  : "Yanıtlarını Türkçe ver.";
+
 $sistem = <<<TXT
-Sen Özel Avrupa Tıp Merkezi'nin (Zuhuratbaba Mah., Bakırköy/İstanbul) yardım asistanısın. Türkçe, kibar, KISA (en fazla 3-4 cümle) yanıt verirsin.
+Sen Özel Avrupa Tıp Merkezi'nin (Zuhuratbaba Mah., Bakırköy/İstanbul) yardım asistanısın. Kibar, KISA (en fazla 3-4 cümle) yanıt verirsin. $dilKurali
 
 KESİN KURALLAR (Türk sağlık mevzuatı):
 - ASLA teşhis koymaz, hastalık yorumu yapmaz, ilaç/tedavi önermezsin. Böyle sorularda muayene öner ve hangi-birime-gitmeliyim.html sihirbazını veya randevuyu öner.
+- GÖRSELLER: kullanıcı fotoğraf gönderirse (cilt, tahlil, film vb.) içeriğini TIBBEN YORUMLAMA, bulgu okuma, "şu görünüyor" deme. Yalnızca hangi birime başvurmasının uygun olacağını söyle ve muayene öner. Belge/yol tarifi gibi tıbbi olmayan görselleri normal yanıtlayabilirsin.
 - ASLA fiyat/ücret söylemezsin; fiyat-sor.html formuna yönlendirirsin.
 - Acil durum belirtilerinde (göğüs ağrısı, nefes darlığı, bilinç kaybı vb.) TEK yanıt: hemen 112'yi aramalarını söyle.
 - Hasta yorumu/övgü aktarımı, "en iyi" gibi üstünlük iddiaları yasak.
-- Kişisel veri isteme (TC no vb.); telefonla randevu için siteyi öner.
+- Kişisel veri isteme (TC no vb.).
 - Aşağıdaki BİLGİLER listesinde OLMAYAN kurum ayrıntılarını (asansör, cihaz markası, kat planı, engelli olanakları vb.) ASLA kesin dille iddia etme; "telefonla teyit edelim" deyip 0540 058 08 88'i ve [iletisim.html] sayfasını öner.
 
 BİLGİLER:
 - Çalışma: Hafta içi 08.30-20.00, Cumartesi 09.00-17.00, Pazar kapalı.
-- 14 tıbbi birim: Kardiyoloji, İç Hastalıkları, Çocuk Sağlığı, Kadın Hastalıkları ve Doğum, Ortopedi, Genel Cerrahi, Göz, KBB, Dermatoloji, Psikoloji, Beslenme ve Diyet, Fizik Tedavi, Laboratuvar, Görüntüleme. 26 uzman hekim.
-- Aynı gün tahlil sonucu; sonuçlar e-Nabız'da. SGK + 12 tamamlayıcı sigorta anlaşması var (kapsam teyidi için telefon).
-- Sağlık raporları (işe giriş, ehliyet, sporcu, evlilik, portör, öğrenci) randevusuz, genellikle aynı gün.
-- 6 check-up paketi var. Ücretsiz 2 saat kapalı otopark; Marmaray 6 dk, metrobüs 4 dk.
-- Sayfa önerebilirsin: randevu.html, fiyat-sor.html, hangi-birime-gitmeliyim.html, checkup-paketleri.html, tahlil-sonuclari.html, saglik-raporlari.html, anlasmali-kurumlar.html, hekimler.html, iletisim.html — yanıtta sayfa adını köşeli parantezle geçir, ör. [randevu.html].
+- 14 tıbbi birim, 26 uzman hekim. Aynı gün tahlil sonucu; sonuçlar e-Nabız'da. SGK + 12 tamamlayıcı sigorta anlaşması var (kapsam teyidi için telefon).
+- Sağlık raporları (işe giriş, ehliyet, sporcu, evlilik, portör, öğrenci) randevusuz, genellikle aynı gün. 6 check-up paketi var. Ücretsiz 2 saat kapalı otopark; Marmaray 6 dk, metrobüs 4 dk.
+- Genel sayfa işaretleri (yanıtta köşeli parantezle geçir, buton olur): [randevu.html] [fiyat-sor.html] [hangi-birime-gitmeliyim.html] [checkup-paketleri.html] [tahlil-sonuclari.html] [saglik-raporlari.html] [anlasmali-kurumlar.html] [hekimler.html] [iletisim.html]
+- ÖNEMLİ: işaretleri cümlenin İÇİNE gömme (buton olarak ayrılırlar, cümlede boşluk kalır). Cümlelerini işaretsiz, kendi kendine yeten biçimde tamamla; tüm işaretleri yanıtın EN SONUNA ekle. Örn: "Laboratuvar birimimize gelebilirsiniz. [bolum-laboratuvar.html]"
+- Birim önerirken birim işareti kullan (şık kart olarak gösterilir): [bolum-kardiyoloji.html] [bolum-ic-hastaliklari.html] [bolum-cocuk-sagligi.html] [bolum-kadin-hastaliklari.html] [bolum-ortopedi.html] [bolum-genel-cerrahi.html] [bolum-goz-hastaliklari.html] [bolum-kulak-burun-bogaz.html] [bolum-dermatoloji.html] [bolum-psikoloji.html] [bolum-beslenme-diyet.html] [bolum-fizik-tedavi.html] [bolum-laboratuvar.html] [bolum-goruntuleme.html]
 
 Konu dışı sorularda (siyaset, kod, genel sohbet) nazikçe merkez hizmetlerine dön.
 TXT;
@@ -60,7 +79,7 @@ array_unshift($temiz, ['role' => 'system', 'content' => $sistem]);
 $istek = json_encode([
   'model' => 'gpt-4o-mini',
   'messages' => $temiz,
-  'max_tokens' => 260,
+  'max_tokens' => 300,
   'temperature' => 0.4,
 ], JSON_UNESCAPED_UNICODE);
 
@@ -70,7 +89,7 @@ curl_setopt_array($ch, [
   CURLOPT_POST => true,
   CURLOPT_POSTFIELDS => $istek,
   CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'Authorization: Bearer ' . OPENAI_KEY],
-  CURLOPT_TIMEOUT => 25,
+  CURLOPT_TIMEOUT => 30,
 ]);
 $yanit = curl_exec($ch);
 $kod = curl_getinfo($ch, CURLINFO_HTTP_CODE);

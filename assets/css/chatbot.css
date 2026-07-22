@@ -171,3 +171,60 @@
 .cbt-alt button:hover{transform:translateY(-1px)}
 .cbt-alt button svg{width:18px; height:18px}
 .cbt-not{font-size:10.5px; color:#8B97A8; text-align:center; padding:0 .7rem 9px; background:#fff; font-weight:600}
+
+/* ---- araç çubuğu (foto / mik / dil / sesli yanıt) ---- */
+.cbt-arac{display:flex; align-items:center; gap:6px; padding:8px 12px 0; background:#fff}
+.cbt-arac-btn{
+  width:34px; height:34px; border-radius:50%; border:1.5px solid #E3E9F1;
+  background:#F8FAFC; cursor:pointer; font-size:15px; display:grid; place-items:center;
+  padding:0; transition:.15s ease; line-height:1;
+}
+.cbt-arac-btn:hover{border-color:#C4D0DE; background:#EEF3F7}
+.cbt-mik-acik{background:#FDECEC !important; border-color:#F5B5B5 !important; animation:cbtMik 1.1s infinite}
+@keyframes cbtMik{0%{box-shadow:0 0 0 0 rgba(224,62,62,.4)}70%{box-shadow:0 0 0 7px rgba(224,62,62,0)}100%{box-shadow:0 0 0 0 rgba(224,62,62,0)}}
+.cbt-mik-mesgul{opacity:.5; cursor:wait !important; animation:cbtMikB 1s ease-in-out infinite}
+@keyframes cbtMikB{50%{opacity:.25}}
+.cbt-arac-dil{
+  height:34px; border-radius:100px; border:1.5px solid #E3E9F1; background:#F8FAFC;
+  color:#1C2B3A; font-size:11.5px; font-family:inherit; padding:0 6px; cursor:pointer;
+}
+.cbt-arac-dil:hover{border-color:#C4D0DE}
+.cbt-sesli{margin-left:auto; display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; color:#5F6B7E; cursor:pointer; user-select:none}
+.cbt-sesli input{accent-color:#A85B2A; cursor:pointer}
+
+/* ---- bekleyen fotoğraf eki ---- */
+.cbt-ek{padding:8px 12px 0; background:#fff}
+.cbt-ek-cip{
+  display:inline-flex; align-items:center; gap:8px; background:#F8FAFC;
+  border:1.5px solid #D8E2EC; border-radius:12px; padding:6px 10px 6px 6px; max-width:100%;
+}
+.cbt-ek-cip img{width:34px; height:34px; object-fit:cover; border-radius:8px; flex:none}
+.cbt-ek-cip span{font-size:12px; font-weight:600; color:#1C2B3A}
+.cbt-ek-cip button{
+  border:none; background:#EEF3F7; color:#5F6B7E; width:22px; height:22px;
+  border-radius:50%; cursor:pointer; font-size:11px; flex:none; line-height:1;
+}
+
+/* ---- mesaj içi gönderilen görsel ---- */
+.cbt-gorsel{max-width:180px; max-height:180px; border-radius:10px; display:block; margin-bottom:4px}
+
+/* ---- yanıt puanı 👍/👎 ---- */
+.cbt-fb{display:flex; gap:4px; margin-top:8px; padding-top:7px; border-top:1px solid #EEF2F6}
+.cbt-fb button{
+  border:1px solid #E0E7EE; background:#fff; border-radius:8px; padding:2px 9px;
+  font-size:13px; cursor:pointer; line-height:1.3; opacity:.75; transition:.15s ease;
+}
+.cbt-fb button:hover{opacity:1; border-color:#C3D0DC; transform:translateY(-1px)}
+.cbt-fb-ok{font-size:11.5px; color:#2F9E6B; font-weight:700}
+
+/* ---- birim kartları (yatay kaydırma) ---- */
+.cbt-kartlar{display:flex; gap:8px; overflow-x:auto; padding:8px 2px 4px; margin-top:6px; scrollbar-width:thin}
+.cbt-kart{
+  flex:0 0 128px; background:#F8FAFC; border:1px solid #E3E9F1; border-radius:13px;
+  padding:10px 11px; display:flex; flex-direction:column; gap:3px;
+  text-decoration:none !important; transition:.15s ease;
+}
+.cbt-kart:hover{border-color:#A85B2A; transform:translateY(-2px); box-shadow:0 6px 14px rgba(8,21,39,.1)}
+.cbt-kart .ikon{font-size:20px; line-height:1.2}
+.cbt-kart b{font-size:12px; line-height:1.25; color:#0A1C33}
+.cbt-kart .git{font-size:10.5px; font-weight:800; color:#A85B2A; margin-top:2px}

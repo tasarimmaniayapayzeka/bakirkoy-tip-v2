@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kişisel Sağlık Ajandam | Özel Avrupa Tıp Merkezi</title>
+<meta name="description" content="Randevularınızı, ilaç ve kontrol hatırlatıcılarınızı, hekiminize soracaklarınızı ve tahlil takibinizi tek yerde düzenleyin. Tüm bilgiler yalnızca kendi cihazınızda saklanır; sunucuya gönderilmez.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/chatbot.js?v=2"></script>
+<style>
+/* ===== Kişisel Ajanda — sayfaya özel bileşenler (global CSS'e dokunmaz) ===== */
+.aj-privacy{
+  display:flex; gap:1rem; align-items:flex-start;
+  background:var(--navy-50); border:1px solid var(--navy-100); border-left:3px solid var(--navy-600);
+  padding:1.15rem 1.35rem; margin-bottom:clamp(1.75rem,4vw,2.5rem);
+}
+.aj-privacy svg{width:26px; height:26px; color:var(--navy-600); flex:none; margin-top:.1rem}
+.aj-privacy strong{display:block; color:var(--navy-900); font-family:var(--ff-serif); font-size:1.02rem; margin-bottom:.25rem}
+.aj-privacy p{font-size:.9rem; color:var(--ink-2); margin:0; line-height:1.6}
+
+.aj-warn{
+  background:#FCEBEB; border:1px solid #F09595; border-left:3px solid #A32D2D;
+  padding:1rem 1.2rem; margin-bottom:1.75rem; font-size:.9rem; color:#791F1F;
+}
+.aj-warn strong{display:block; margin-bottom:.2rem}
+
+/* Özet şeridi */
+.aj-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:clamp(1.75rem,4vw,2.5rem)}
+.aj-stat{background:#fff; padding:1.35rem 1.4rem; display:flex; gap:.9rem; align-items:center}
+.aj-stat .ic{width:42px; height:42px; border:1px solid var(--line); display:grid; place-items:center; color:var(--copper-600); flex:none}
+.aj-stat .ic svg{width:21px; height:21px}
+.aj-stat b{font-family:var(--ff-serif); font-size:1.02rem; color:var(--navy-900); display:block; line-height:1.25}
+.aj-stat span{font-size:.82rem; color:var(--muted)}
+@media (max-width:720px){ .aj-stats{grid-template-columns:1fr} }
+
+/* Araç çubuğu */
+.aj-toolbar{display:flex; flex-wrap:wrap; gap:.6rem; justify-content:flex-end; margin-bottom:1.25rem}
+.aj-toolbar .btn{min-height:44px; padding:.55rem 1.05rem; font-size:.86rem}
+.aj-toolbar .btn svg{width:16px; height:16px}
+
+/* Sekmeler */
+.aj-tabs{display:flex; flex-wrap:wrap; gap:.5rem; border-bottom:1px solid var(--line); margin-bottom:1.75rem}
+.aj-tab{
+  min-height:48px; padding:.65rem 1.15rem; background:transparent; border:0;
+  border-bottom:3px solid transparent; margin-bottom:-1px;
+  font-weight:700; font-size:.84rem; letter-spacing:.04em; color:var(--ink-2);
+  display:inline-flex; align-items:center; gap:.5rem;
+}
+.aj-tab svg{width:17px; height:17px; flex:none}
+.aj-tab:hover{color:var(--navy-900)}
+.aj-tab[aria-selected="true"]{color:var(--navy-900); border-bottom-color:var(--copper-600)}
+.aj-tab .cnt{
+  font-size:.72rem; font-weight:700; background:var(--navy-50); color:var(--navy-700);
+  border:1px solid var(--navy-100); padding:.05rem .45rem; min-width:22px; text-align:center;
+}
+.aj-tab[aria-selected="true"] .cnt{background:var(--copper-50); border-color:var(--copper-100); color:var(--copper-700)}
+
+.aj-panel{display:grid; grid-template-columns:1fr 1.15fr; gap:clamp(1.5rem,4vw,2.75rem); align-items:start}
+@media (max-width:860px){ .aj-panel{grid-template-columns:1fr} }
+.aj-panel[hidden]{display:none}
+
+/* Liste */
+.aj-listhead{display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin-bottom:.9rem}
+.aj-listhead h2{font-size:1.15rem; color:var(--navy-900)}
+.aj-listhead span{font-size:.8rem; color:var(--muted)}
+.aj-list{display:flex; flex-direction:column; gap:.7rem}
+.aj-item{
+  border:1px solid var(--line); border-left:3px solid var(--copper-600); background:#fff;
+  padding:.95rem 1.15rem; display:flex; gap:1rem; align-items:flex-start;
+}
+.aj-item.past{border-left-color:var(--line); opacity:.72}
+.aj-item.done{border-left-color:#1E9E58}
+.aj-item-body{flex:1; min-width:0}
+.aj-item-body h3{font-family:var(--ff); font-size:.98rem; font-weight:700; color:var(--navy-900); margin:0 0 .2rem; word-wrap:break-word}
+.aj-item.done h3{text-decoration:line-through; color:var(--muted)}
+.aj-item-meta{display:flex; flex-wrap:wrap; gap:.35rem .8rem; font-size:.82rem; color:var(--ink-2); margin-top:.15rem}
+.aj-item-meta .m{display:inline-flex; align-items:center; gap:.35rem}
+.aj-item-meta svg{width:14px; height:14px; color:var(--copper-600); flex:none}
+.aj-note-line{font-size:.86rem; color:var(--muted); margin-top:.4rem; white-space:pre-wrap; word-wrap:break-word}
+.aj-badge{
+  display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  padding:.15rem .5rem; border:1px solid var(--line); color:var(--ink-2); background:var(--bg-2); margin-top:.35rem;
+}
+.aj-badge.bekliyor{color:#8C4A20; background:var(--copper-50); border-color:var(--copper-100)}
+.aj-badge.hazir{color:#1D6B3C; background:#E8F5EC; border-color:#BBE3C6}
+.aj-badge.goruldu{color:var(--navy-700); background:var(--navy-50); border-color:var(--navy-100)}
+.aj-badge.yaklasiyor{color:#fff; background:var(--copper-600); border-color:var(--copper-600)}
+
+.aj-item-actions{display:flex; flex-direction:column; gap:.35rem; flex:none}
+.aj-ico{
+  width:34px; height:34px; border:1px solid var(--line); background:#fff; display:grid; place-items:center;
+  color:var(--ink-2); border-radius:var(--r);
+}
+.aj-ico:hover{border-color:var(--navy-500); color:var(--navy-800); background:var(--navy-50)}
+.aj-ico.danger:hover{border-color:#A32D2D; color:#A32D2D; background:#FCEBEB}
+.aj-ico svg{width:16px; height:16px}
+
+.aj-empty{
+  text-align:center; padding:clamp(1.75rem,4vw,2.75rem); border:1px dashed var(--navy-100);
+  background:var(--bg-2); color:var(--muted);
+}
+.aj-empty svg{width:34px; height:34px; color:var(--navy-100); margin:0 auto .7rem; display:block}
+.aj-empty strong{display:block; font-family:var(--ff-serif); color:var(--ink-2); font-size:1rem; margin-bottom:.25rem}
+.aj-empty span{font-size:.86rem}
+
+.form-card .field:last-of-type{margin-bottom:1.1rem}
+.aj-form-actions{display:flex; gap:.7rem; flex-wrap:wrap}
+.aj-form-actions .btn{flex:1; min-width:140px}
+.aj-cancel{display:none}
+.form-card.editing .aj-cancel{display:inline-flex}
+
+/* Yazdırma görünümü */
+.aj-printhead{display:none}
+@media print{
+  .topbar,.header,.footer,.mobilebar,.wa-fab,.cb-band,.chatbot-fab,.chatbot-panel,
+  .pagehead,.aj-toolbar,.aj-tabs,.aj-privacy,.form-card,.aj-item-actions,.section--dark,
+  .aj-stat .ic{display:none !important}
+  .aj-panel{display:block !important; page-break-inside:avoid}
+  .aj-panel[hidden]{display:block !important}
+  .aj-listhead span{display:none}
+  .aj-printhead{display:block; margin-bottom:1.25rem; border-bottom:2px solid #000; padding-bottom:.6rem}
+  .aj-printhead strong{font-family:var(--ff-serif); font-size:1.3rem}
+  .aj-printhead span{display:block; font-size:.85rem; color:#333; margin-top:.2rem}
+  .aj-panel{margin-bottom:1.5rem}
+  .aj-listhead h2{font-size:1.1rem; margin-bottom:.5rem}
+  .aj-item{opacity:1 !important; border-left-color:#000}
+  body{padding:0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">İçeriğe geç</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-info">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Zuhuratbaba Mah., Bakırköy / İstanbul</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Hafta içi 08:30–20:00 · Cumartesi 09:00–17:00</span>
+    </div>
+    <div class="topbar-actions">
+      <a href="fiyat-sor.html">Fiyat Sor</a>
+      <a href="tahlil-sonuclari.html">Tahlil Sonuçları</a>
+      <a href="anlasmali-kurumlar.html">Anlaşmalı Kurumlar</a>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="index.html">
+      <img class="logo-ac" src="assets/img/logo-ac-navy.png" alt="" width="72" height="26">
+      <span class="logo-text">
+        <strong>Avrupa Tıp Merkezi</strong>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Ana menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="bolumler.html">Tıbbi Birimler</a>
+      <a href="hekimler.html">Hekimlerimiz</a>
+      <a href="saglik-raporlari.html">Sağlık Raporları</a>
+      <a href="saglik-rehberi.html" aria-current="page">Sağlık Rehberi</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn--ghost" href="tel:+905400580888">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        0540 058 08 88
+      </a>
+      <a class="btn btn--copper" href="randevu.html">Randevu Al</a>
+      <button class="burger" aria-label="Menüyü aç" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="pagehead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Konum">
+      <a href="index.html">Ana Sayfa</a><span>›</span>
+      <a href="saglik-rehberi.html">Sağlık Rehberi</a><span>›</span>
+      <span aria-current="page">Kişisel Sağlık Ajandam</span>
+    </nav>
+    <h1>Kişisel Sağlık Ajandam</h1>
+    <p>Randevularınızı, ilaç ve kontrol hatırlatıcılarınızı, hekiminize soracaklarınızı ve tahlil takibinizi tek yerde düzenleyin. Bu araç yalnızca not tutmanıza yardım eder; teşhis koymaz, tedavi önermez.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+
+    <div class="aj-printhead">
+      <strong>Özel Avrupa Tıp Merkezi — Kişisel Sağlık Ajandam</strong>
+      <span id="printDate"></span>
+    </div>
+
+    <div class="aj-privacy">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+      <div>
+        <strong>Bilgileriniz yalnızca bu cihazda kalır</strong>
+        <p>Bu ajandaya yazdığınız her şey <b>yalnızca kullandığınız tarayıcıda</b> saklanır; merkezimize veya herhangi bir sunucuya <b>gönderilmez</b>, kimse tarafından görülmez. Tarayıcı verilerinizi silerseniz kayıtlar da silinir. Yedeklemek için “Yedek Al” ile dosya olarak dışa aktarabilirsiniz. Sağlıkla ilgili kararlar için hekiminize danışın.</p>
+      </div>
+    </div>
+
+    <div class="aj-warn" id="storeWarn" hidden>
+      <strong>Kayıt yapılamıyor</strong>
+      Tarayıcınız gizli/özel modda olabilir ya da site verilerine izin vermiyor. Bu durumda yazdıklarınız sayfayı kapatınca kaybolur. Normal pencerede açmayı deneyebilirsiniz.
+    </div>
+
+    <!-- Özet -->
+    <div class="aj-stats" id="stats" aria-live="polite"></div>
+
+    <!-- Araç çubuğu -->
+    <div class="aj-toolbar">
+      <button class="btn btn--ghost" type="button" id="btnPrint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Yazdır / Doktora Götür
+      </button>
+      <button class="btn btn--ghost" type="button" id="btnExport">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+        Yedek Al
+      </button>
+      <button class="btn btn--ghost" type="button" id="btnImport">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+        Yedeği Yükle
+      </button>
+      <input type="file" id="importFile" accept="application/json,.json" class="sr-only" aria-hidden="true" tabindex="-1">
+      <button class="btn btn--ghost" type="button" id="btnClear">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg>
+        Tümünü Sil
+      </button>
+    </div>
+
+    <!-- Sekmeler -->
+    <div class="aj-tabs" role="tablist" aria-label="Ajanda bölümleri">
+      <button class="aj-tab" role="tab" id="tab-randevu" aria-controls="panel-randevu" aria-selected="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
+        Randevularım <span class="cnt" id="cnt-randevu">0</span>
+      </button>
+      <button class="aj-tab" role="tab" id="tab-ilac" aria-controls="panel-ilac" aria-selected="false" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.5 20.5 3.5 13.5a5 5 0 0 1 7-7l7 7a5 5 0 0 1-7 7z"/><path d="M8.5 8.5l7 7"/></svg>
+        Hatırlatıcılarım <span class="cnt" id="cnt-ilac">0</span>
+      </button>
+      <button class="aj-tab" role="tab" id="tab-soru" aria-controls="panel-soru" aria-selected="false" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+        Doktora Sorularım <span class="cnt" id="cnt-soru">0</span>
+      </button>
+      <button class="aj-tab" role="tab" id="tab-tahlil" aria-controls="panel-tahlil" aria-selected="false" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6"/><path d="M10 3v6l-4 8a2 2 0 0 0 2 3h8a2 2 0 0 0 2-3l-4-8V3"/><path d="M7 15h10"/></svg>
+        Tahlil Takibim <span class="cnt" id="cnt-tahlil">0</span>
+      </button>
+    </div>
+
+    <!-- Panel: Randevular -->
+    <div class="aj-panel" id="panel-randevu" role="tabpanel" aria-labelledby="tab-randevu">
+      <form class="form-card" id="form-randevu" novalidate>
+        <h2 class="form-title">Randevu ekle</h2>
+        <p class="form-sub">Aldığınız randevuyu not edin; yaklaşanları burada hatırlatalım.</p>
+        <div class="field"><label for="r-baslik">Konu / Birim</label><input id="r-baslik" required maxlength="80" placeholder="Örn. Kardiyoloji muayenesi"></div>
+        <div class="row2">
+          <div class="field"><label for="r-tarih">Tarih</label><input id="r-tarih" type="date" required></div>
+          <div class="field"><label for="r-saat">Saat</label><input id="r-saat" type="time"></div>
+        </div>
+        <div class="field"><label for="r-hekim">Hekim (isteğe bağlı)</label><input id="r-hekim" maxlength="60" placeholder="Örn. Uzm. Dr. ..."></div>
+        <div class="field"><label for="r-not">Not (isteğe bağlı)</label><textarea id="r-not" maxlength="400" placeholder="Aç karına gidilecek, sevk kâğıdı yanımda olsun..."></textarea></div>
+        <div class="aj-form-actions">
+          <button class="btn btn--copper" type="submit" data-add="Randevuyu Ekle">Randevuyu Ekle</button>
+          <button class="btn btn--ghost aj-cancel" type="button">Vazgeç</button>
+        </div>
+      </form>
+      <div>
+        <div class="aj-listhead"><h2>Randevularım</h2><span>yaklaşan tarih üstte</span></div>
+        <div class="aj-list" id="list-randevu"></div>
+      </div>
+    </div>
+
+    <!-- Panel: İlaç / kontrol hatırlatıcıları -->
+    <div class="aj-panel" id="panel-ilac" role="tabpanel" aria-labelledby="tab-ilac" hidden>
+      <form class="form-card" id="form-ilac" novalidate>
+        <h2 class="form-title">Hatırlatıcı ekle</h2>
+        <p class="form-sub">Hekiminizin verdiği ilaç veya kontrol saatlerini not edin. Bu liste, tarayıcı kapalıyken bildirim göndermez; düzenli takip için bir hatırlatma defteridir.</p>
+        <div class="field"><label for="i-ad">İlaç / kontrol adı</label><input id="i-ad" required maxlength="80" placeholder="Örn. Tansiyon ilacı"></div>
+        <div class="row2">
+          <div class="field"><label for="i-doz">Doz (isteğe bağlı)</label><input id="i-doz" maxlength="40" placeholder="Örn. 1 tablet"></div>
+          <div class="field"><label for="i-zaman">Zaman</label><input id="i-zaman" maxlength="60" placeholder="Örn. Sabah 08:00, akşam 20:00"></div>
+        </div>
+        <div class="field"><label for="i-not">Not (isteğe bağlı)</label><textarea id="i-not" maxlength="400" placeholder="Tok karına, yemekten sonra..."></textarea></div>
+        <div class="aj-form-actions">
+          <button class="btn btn--copper" type="submit" data-add="Hatırlatıcıyı Ekle">Hatırlatıcıyı Ekle</button>
+          <button class="btn btn--ghost aj-cancel" type="button">Vazgeç</button>
+        </div>
+      </form>
+      <div>
+        <div class="aj-listhead"><h2>Hatırlatıcılarım</h2><span>hekiminizin önerdiği plan</span></div>
+        <div class="aj-list" id="list-ilac"></div>
+      </div>
+    </div>
+
+    <!-- Panel: Doktora sorular -->
+    <div class="aj-panel" id="panel-soru" role="tabpanel" aria-labelledby="tab-soru" hidden>
+      <form class="form-card" id="form-soru" novalidate>
+        <h2 class="form-title">Soru ekle</h2>
+        <p class="form-sub">Muayenede unutmamak istediğiniz soruları yazın; “Yazdır” ile listeyi hekiminize götürebilirsiniz.</p>
+        <div class="field"><label for="s-metin">Sorunuz</label><textarea id="s-metin" required maxlength="300" placeholder="Örn. Bu ilacı ne kadar süre kullanacağım?"></textarea></div>
+        <div class="aj-form-actions">
+          <button class="btn btn--copper" type="submit" data-add="Soruyu Ekle">Soruyu Ekle</button>
+          <button class="btn btn--ghost aj-cancel" type="button">Vazgeç</button>
+        </div>
+      </form>
+      <div>
+        <div class="aj-listhead"><h2>Doktora sorularım</h2><span>sorduklarınızı işaretleyin</span></div>
+        <div class="aj-list" id="list-soru"></div>
+      </div>
+    </div>
+
+    <!-- Panel: Tahlil takibi -->
+    <div class="aj-panel" id="panel-tahlil" role="tabpanel" aria-labelledby="tab-tahlil" hidden>
+      <form class="form-card" id="form-tahlil" novalidate>
+        <h2 class="form-title">Tahlil / rapor ekle</h2>
+        <p class="form-sub">Hangi tetkiki yaptırdığınızı ve sonucun durumunu takip edin. Buraya <b>tahlil değerleri girmeyin</b> — yalnızca takip amaçlıdır. Sonuçlarınız için <a href="tahlil-sonuclari.html">e-Nabız / tahlil sonuçları</a> sayfasını kullanın.</p>
+        <div class="field"><label for="t-ad">Tetkik / rapor adı</label><input id="t-ad" required maxlength="80" placeholder="Örn. Tam kan sayımı"></div>
+        <div class="row2">
+          <div class="field"><label for="t-tarih">Tarih (isteğe bağlı)</label><input id="t-tarih" type="date"></div>
+          <div class="field"><label for="t-durum">Durum</label>
+            <select id="t-durum"><option value="bekliyor">Sonuç bekleniyor</option><option value="hazir">Sonuç hazır</option><option value="goruldu">Hekim değerlendirdi</option></select>
+          </div>
+        </div>
+        <div class="field"><label for="t-yer">Nerede (isteğe bağlı)</label><input id="t-yer" maxlength="60" placeholder="Örn. Merkez laboratuvarı"></div>
+        <div class="field"><label for="t-not">Not (isteğe bağlı)</label><textarea id="t-not" maxlength="400" placeholder="Kontrol randevusunda gösterilecek..."></textarea></div>
+        <div class="aj-form-actions">
+          <button class="btn btn--copper" type="submit" data-add="Tetkiki Ekle">Tetkiki Ekle</button>
+          <button class="btn btn--ghost aj-cancel" type="button">Vazgeç</button>
+        </div>
+      </form>
+      <div>
+        <div class="aj-listhead"><h2>Tahlil takibim</h2><span>durum etiketiyle</span></div>
+        <div class="aj-list" id="list-tahlil"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="wrap sec-head center" style="margin-bottom:0">
+    <span class="kicker">Randevu</span>
+    <h2 style="color:#fff">Notlarınızı bir de bizimle netleştirelim</h2>
+    <p>Ajandanızdaki başlıkları muayenede hekimlerimizle görüşün; randevunuzu telefonla veya online oluşturun.</p>
+    <div class="hero-actions" style="justify-content:center; margin-top:1.75rem">
+      <a class="btn btn--copper" href="randevu.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
+        Online Randevu Al
+      </a>
+      <a class="btn btn--outline-light" href="tel:+905400580888">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        0540 058 08 88
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="index.html">
+          <img class="logo-ac" src="assets/img/logo-ac-copper.png" alt="" width="72" height="26">
+          <span class="logo-text"><strong>Avrupa Tıp Merkezi</strong></span>
+        </a>
+        <p class="footer-note">Zuhuratbaba Mah. İncirli Cad. No:23<br>34147 Bakırköy / İstanbul<br><a href="tel:+905400580888">0540 058 08 88</a> · <a href="mailto:info@ornek.com.tr">info@ornek.com.tr</a></p>
+      </div>
+      <div>
+        <h3>Kurumsal</h3>
+        <ul>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="hekimler.html">Hekimlerimiz</a></li>
+          <li><a href="anlasmali-kurumlar.html">Anlaşmalı Kurumlar</a></li>
+          <li><a href="hasta-haklari.html">Hasta Hakları</a></li>
+          <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Hizmetler</h3>
+        <ul>
+          <li><a href="bolumler.html">Tıbbi Birimler</a></li>
+          <li><a href="saglik-raporlari.html">Sağlık Raporları</a></li>
+          <li><a href="randevu.html">Online Randevu</a></li>
+          <li><a href="fiyat-sor.html">Fiyat Sor</a></li>
+          <li><a href="tahlil-sonuclari.html">Tahlil Sonuçları</a></li>
+          <li><a href="saglik-rehberi.html">Sağlık Rehberi</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Yasal</h3>
+        <ul>
+          <li><a href="kvkk.html">KVKK Aydınlatma Metni</a></li>
+          <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+          <li><a href="kvkk-basvuru-formu.html">Başvuru Formu</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="compliance">
+      <strong>Kurum unvanı:</strong> Özel Avrupa Tıp Merkezi (ruhsatta yer alan tam unvan) &nbsp;·&nbsp;
+      <strong>Mesul müdür:</strong> Uzm. Dr. Elif Kavaklı &nbsp;·&nbsp;
+      <strong>Faaliyet izin belgesi:</strong> İstanbul İl Sağlık Müdürlüğü — No: 34-ÖTM-2127<br>
+      <strong>Site içerik editörü:</strong> Aylin Demir — editor@ornek.com.tr &nbsp;·&nbsp;
+      <strong>Bu sayfadaki bilgilerin son güncellenme tarihi:</strong> 22.07.2026<br>
+      Bu sitedeki içerikler yalnızca bilgilendirme amaçlıdır, hekim muayenesi ve tıbbi tavsiye yerine geçmez.
+    </div>
+
+    <div class="footer-legal">
+      <span>© 2026 Özel Avrupa Tıp Merkezi. Tüm hakları saklıdır.</span>
+    </div>
+  </div>
+</footer>
+
+<nav class="mobilebar" aria-label="Hızlı iletişim">
+  <a class="mb-call" href="tel:+905400580888">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+    Hemen Ara
+  </a>
+  <a class="mb-wa" href="https://wa.me/905400580888">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a11 11 0 0 1-5.9-5.2c-.4-.7-.7-1.5-.7-2.3 0-.8.4-1.4.8-1.7.2-.2.4-.2.6-.2h.4c.2 0 .4 0 .6.4l.8 1.9c.1.2 0 .4-.1.5l-.4.5c-.1.1-.2.3-.1.5.4.8 1.5 2 2.7 2.5.2.1.4.1.5-.1l.6-.7c.1-.2.3-.2.5-.1l1.8.9c.2.1.3.2.3.4 0 .1 0 .5-.1.7z"/></svg>
+    WhatsApp
+  </a>
+  <a class="mb-app" href="randevu.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
+    Randevu
+  </a>
+</nav>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "atm_ajanda_v1";
+  var TABS = ["randevu","ilac","soru","tahlil"];
+
+  /* --- Depolama ---------------------------------------------------------- */
+  var storageOk = true;
+  try { var t="__t"; localStorage.setItem(t,"1"); localStorage.removeItem(t); }
+  catch(e){ storageOk = false; }
+  if (!storageOk) { document.getElementById("storeWarn").hidden = false; }
+
+  function def(){ return { randevu:[], ilac:[], soru:[], tahlil:[] }; }
+  var DB;
+  try { DB = JSON.parse(localStorage.getItem(KEY)) || def(); }
+  catch(e){ DB = def(); }
+  // gelen veriyi güvenli hâle getir
+  TABS.forEach(function(k){ if (!Array.isArray(DB[k])) DB[k] = []; });
+
+  function save(){
+    if (!storageOk) return;
+    try { localStorage.setItem(KEY, JSON.stringify(DB)); }
+    catch(e){ storageOk = false; document.getElementById("storeWarn").hidden = false; }
+  }
+  function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+  /* --- Yardımcılar ------------------------------------------------------- */
+  var AYLAR = ["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
+  var GUNLER = ["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"];
+  function bugun0(){ var d=new Date(); d.setHours(0,0,0,0); return d; }
+  function tarihObj(ymd){ if(!ymd) return null; var p=ymd.split("-"); if(p.length!==3) return null; var d=new Date(+p[0], +p[1]-1, +p[2]); return isNaN(d.getTime())?null:d; }
+  function tarihYaz(ymd){ var d=tarihObj(ymd); if(!d) return ""; return d.getDate()+" "+AYLAR[d.getMonth()]+" "+d.getFullYear()+" "+GUNLER[d.getDay()]; }
+  function gunFarki(ymd){ var d=tarihObj(ymd); if(!d) return null; d.setHours(0,0,0,0); return Math.round((d - bugun0())/86400000); }
+  function yaklasimMetni(ymd){
+    var f = gunFarki(ymd); if (f===null) return "";
+    if (f<0) return "geçti";
+    if (f===0) return "bugün";
+    if (f===1) return "yarın";
+    if (f<=7) return f+" gün sonra";
+    return "";
+  }
+  var esc = document.createElement("div");
+  function svgMark(paths){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">'+paths+'</svg>'; }
+
+  function iconBtn(cls, label, paths){
+    var b = document.createElement("button");
+    b.type="button"; b.className="aj-ico"+(cls?(" "+cls):""); b.setAttribute("aria-label",label); b.title=label;
+    b.innerHTML = svgMark(paths);
+    return b;
+  }
+  var IC_DEL = '<path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/>';
+  var IC_EDIT = '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>';
+  var IC_CHECK = '<path d="M20 6 9 17l-5-5"/>';
+  var IC_UNDO = '<path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-1"/>';
+
+  function emptyState(tab){
+    var msg = {
+      randevu:["Henüz randevu eklemediniz","Soldaki formdan yaklaşan randevunuzu ekleyin."],
+      ilac:["Henüz hatırlatıcı yok","Hekiminizin verdiği ilaç veya kontrolleri ekleyin."],
+      soru:["Henüz soru eklemediniz","Muayenede sormak istediklerinizi yazın."],
+      tahlil:["Henüz tetkik eklemediniz","Takip etmek istediğiniz tahlil veya raporu ekleyin."]
+    }[tab];
+    var d = document.createElement("div");
+    d.className="aj-empty";
+    d.innerHTML = svgMark('<path d="M9 11l3 3 7-7"/><circle cx="12" cy="12" r="10"/>') +
+      '<strong></strong><span></span>';
+    d.querySelector("strong").textContent = msg[0];
+    d.querySelector("span").textContent = msg[1];
+    return d;
+  }
+
+  function metaSpan(paths, text){
+    if (!text) return null;
+    var s = document.createElement("span"); s.className="m";
+    s.innerHTML = svgMark(paths); var t=document.createElement("span"); t.textContent=text; s.appendChild(t);
+    return s;
+  }
+
+  /* --- Render ------------------------------------------------------------ */
+  function renderRandevu(){
+    var list = document.getElementById("list-randevu"); list.textContent="";
+    var arr = DB.randevu.slice().sort(function(a,b){
+      return (a.tarih+(a.saat||"")).localeCompare(b.tarih+(b.saat||""));
+    });
+    if (!arr.length){ list.appendChild(emptyState("randevu")); return; }
+    arr.forEach(function(it){
+      var f = gunFarki(it.tarih);
+      var past = (f!==null && f<0);
+      var item = document.createElement("div"); item.className="aj-item"+(past?" past":"");
+      var body = document.createElement("div"); body.className="aj-item-body";
+      var h = document.createElement("h3"); h.textContent = it.baslik; body.appendChild(h);
+      var meta = document.createElement("div"); meta.className="aj-item-meta";
+      var m1 = metaSpan('<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M16 3v4M8 3v4M3 11h18"/>', tarihYaz(it.tarih)+(it.saat?(" · "+it.saat):"")); if(m1) meta.appendChild(m1);
+      var m2 = metaSpan('<circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/>', it.hekim); if(m2) meta.appendChild(m2);
+      body.appendChild(meta);
+      var yak = yaklasimMetni(it.tarih);
+      if (yak && !past){ var b=document.createElement("span"); b.className="aj-badge"+((f<=1)?" yaklasiyor":""); b.textContent="Randevu "+yak; body.appendChild(b); }
+      if (it.not){ var n=document.createElement("div"); n.className="aj-note-line"; n.textContent=it.not; body.appendChild(n); }
+      var act = document.createElement("div"); act.className="aj-item-actions";
+      var ed = iconBtn("","Düzenle",IC_EDIT); ed.addEventListener("click",function(){ editRandevu(it.id); });
+      var dl = iconBtn("danger","Sil",IC_DEL); dl.addEventListener("click",function(){ delItem("randevu",it.id); });
+      act.appendChild(ed); act.appendChild(dl);
+      item.appendChild(body); item.appendChild(act); list.appendChild(item);
+    });
+  }
+
+  function renderIlac(){
+    var list = document.getElementById("list-ilac"); list.textContent="";
+    if (!DB.ilac.length){ list.appendChild(emptyState("ilac")); return; }
+    DB.ilac.forEach(function(it){
+      var item = document.createElement("div"); item.className="aj-item";
+      var body = document.createElement("div"); body.className="aj-item-body";
+      var h = document.createElement("h3"); h.textContent = it.ad + (it.doz?(" — "+it.doz):""); body.appendChild(h);
+      var meta = document.createElement("div"); meta.className="aj-item-meta";
+      var m1 = metaSpan('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>', it.zaman); if(m1) meta.appendChild(m1);
+      body.appendChild(meta);
+      if (it.not){ var n=document.createElement("div"); n.className="aj-note-line"; n.textContent=it.not; body.appendChild(n); }
+      var act = document.createElement("div"); act.className="aj-item-actions";
+      var ed = iconBtn("","Düzenle",IC_EDIT); ed.addEventListener("click",function(){ editIlac(it.id); });
+      var dl = iconBtn("danger","Sil",IC_DEL); dl.addEventListener("click",function(){ delItem("ilac",it.id); });
+      act.appendChild(ed); act.appendChild(dl);
+      item.appendChild(body); item.appendChild(act); list.appendChild(item);
+    });
+  }
+
+  function renderSoru(){
+    var list = document.getElementById("list-soru"); list.textContent="";
+    if (!DB.soru.length){ list.appendChild(emptyState("soru")); return; }
+    DB.soru.forEach(function(it){
+      var item = document.createElement("div"); item.className="aj-item"+(it.tamam?" done":"");
+      var body = document.createElement("div"); body.className="aj-item-body";
+      var h = document.createElement("h3"); h.textContent = it.metin; body.appendChild(h);
+      if (it.tamam){ var b=document.createElement("span"); b.className="aj-badge goruldu"; b.textContent="Soruldu"; body.appendChild(b); }
+      var act = document.createElement("div"); act.className="aj-item-actions";
+      var tk = iconBtn("", it.tamam?"Geri al":"Soruldu olarak işaretle", it.tamam?IC_UNDO:IC_CHECK);
+      tk.addEventListener("click",function(){ it.tamam=!it.tamam; save(); renderAll(); });
+      var dl = iconBtn("danger","Sil",IC_DEL); dl.addEventListener("click",function(){ delItem("soru",it.id); });
+      act.appendChild(tk); act.appendChild(dl);
+      item.appendChild(body); item.appendChild(act); list.appendChild(item);
+    });
+  }
+
+  var DURUM = { bekliyor:"Sonuç bekleniyor", hazir:"Sonuç hazır", goruldu:"Hekim değerlendirdi" };
+  function renderTahlil(){
+    var list = document.getElementById("list-tahlil"); list.textContent="";
+    if (!DB.tahlil.length){ list.appendChild(emptyState("tahlil")); return; }
+    DB.tahlil.forEach(function(it){
+      var item = document.createElement("div"); item.className="aj-item";
+      var body = document.createElement("div"); body.className="aj-item-body";
+      var h = document.createElement("h3"); h.textContent = it.ad; body.appendChild(h);
+      var meta = document.createElement("div"); meta.className="aj-item-meta";
+      var m1 = metaSpan('<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M16 3v4M8 3v4M3 11h18"/>', it.tarih?tarihYaz(it.tarih):""); if(m1) meta.appendChild(m1);
+      var m2 = metaSpan('<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>', it.yer); if(m2) meta.appendChild(m2);
+      body.appendChild(meta);
+      var bd = document.createElement("span"); bd.className="aj-badge "+(it.durum||"bekliyor"); bd.textContent = DURUM[it.durum]||DURUM.bekliyor; body.appendChild(bd);
+      if (it.not){ var n=document.createElement("div"); n.className="aj-note-line"; n.textContent=it.not; body.appendChild(n); }
+      var act = document.createElement("div"); act.className="aj-item-actions";
+      var ed = iconBtn("","Düzenle",IC_EDIT); ed.addEventListener("click",function(){ editTahlil(it.id); });
+      var dl = iconBtn("danger","Sil",IC_DEL); dl.addEventListener("click",function(){ delItem("tahlil",it.id); });
+      act.appendChild(ed); act.appendChild(dl);
+      item.appendChild(body); item.appendChild(act); list.appendChild(item);
+    });
+  }
+
+  function renderStats(){
+    var next=null;
+    DB.randevu.forEach(function(it){ var f=gunFarki(it.tarih); if(f!==null && f>=0){ if(!next || (it.tarih+(it.saat||"")) < (next.tarih+(next.saat||""))) next=it; } });
+    var nextTxt = next ? (tarihYaz(next.tarih)+(next.saat?(" "+next.saat):"")) : "Yaklaşan randevu yok";
+    var nextSub = next ? next.baslik : "randevu ekleyin";
+    var acikSoru = DB.soru.filter(function(s){ return !s.tamam; }).length;
+    var bekTahlil = DB.tahlil.filter(function(t){ return (t.durum||"bekliyor")==="bekliyor"; }).length;
+    var s = document.getElementById("stats");
+    s.innerHTML =
+      '<div class="aj-stat"><div class="ic">'+svgMark('<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M16 3v4M8 3v4M3 11h18"/>')+'</div><div><b class="js-next"></b><span class="js-nextsub"></span></div></div>'+
+      '<div class="aj-stat"><div class="ic">'+svgMark('<path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/>')+'</div><div><b>'+acikSoru+' soru</b><span>hekiminize sormak için</span></div></div>'+
+      '<div class="aj-stat"><div class="ic">'+svgMark('<path d="M9 3h6"/><path d="M10 3v6l-4 8a2 2 0 0 0 2 3h8a2 2 0 0 0 2-3l-4-8V3"/><path d="M7 15h10"/>')+'</div><div><b>'+bekTahlil+' tahlil</b><span>sonuç bekleyen</span></div></div>';
+    s.querySelector(".js-next").textContent = nextTxt;
+    s.querySelector(".js-nextsub").textContent = nextSub;
+  }
+
+  function renderCounts(){
+    TABS.forEach(function(k){ document.getElementById("cnt-"+k).textContent = DB[k].length; });
+  }
+
+  function renderAll(){ renderRandevu(); renderIlac(); renderSoru(); renderTahlil(); renderStats(); renderCounts(); }
+
+  /* --- Silme ------------------------------------------------------------- */
+  function delItem(tab, id){
+    if (!confirm("Bu kaydı silmek istiyor musunuz?")) return;
+    DB[tab] = DB[tab].filter(function(x){ return x.id!==id; });
+    save(); renderAll();
+  }
+
+  /* --- Form altyapısı (ekle + düzenle) ----------------------------------- */
+  function setupForm(name, opts){
+    var form = document.getElementById("form-"+name);
+    var addBtn = form.querySelector('button[type="submit"]');
+    var addLabel = addBtn.getAttribute("data-add");
+    var editingId = null;
+
+    function reset(){
+      editingId = null; form.classList.remove("editing");
+      addBtn.textContent = addLabel;
+      opts.fields.forEach(function(f){ document.getElementById(f).value=""; });
+      if (opts.defaults) opts.defaults();
+    }
+    opts._load = function(it){
+      editingId = it.id; form.classList.add("editing");
+      addBtn.textContent = "Güncelle";
+      opts.fill(it);
+      // panel zaten görünür; forma odaklan
+      document.getElementById(opts.focus).focus();
+      document.getElementById(opts.focus).scrollIntoView({behavior:"smooth", block:"center"});
+    };
+
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var data = opts.collect();
+      if (!data) return; // geçersiz
+      if (editingId){
+        var idx = DB[name].findIndex(function(x){ return x.id===editingId; });
+        if (idx>-1){ data.id = editingId; DB[name][idx] = data; }
+      } else {
+        data.id = uid(); DB[name].push(data);
+      }
+      save(); renderAll(); reset();
+    });
+    form.querySelector(".aj-cancel").addEventListener("click", reset);
+    return opts;
+  }
+
+  var fRandevu = setupForm("randevu", {
+    fields:["r-baslik","r-tarih","r-saat","r-hekim","r-not"], focus:"r-baslik",
+    collect:function(){
+      var b=document.getElementById("r-baslik").value.trim();
+      var t=document.getElementById("r-tarih").value;
+      if(!b){ document.getElementById("r-baslik").focus(); return null; }
+      if(!t){ document.getElementById("r-tarih").focus(); return null; }
+      return { baslik:b, tarih:t, saat:document.getElementById("r-saat").value,
+               hekim:document.getElementById("r-hekim").value.trim(), not:document.getElementById("r-not").value.trim() };
+    },
+    fill:function(it){ document.getElementById("r-baslik").value=it.baslik||""; document.getElementById("r-tarih").value=it.tarih||"";
+      document.getElementById("r-saat").value=it.saat||""; document.getElementById("r-hekim").value=it.hekim||""; document.getElementById("r-not").value=it.not||""; }
+  });
+  function editRandevu(id){ var it=DB.randevu.find(function(x){return x.id===id;}); if(it){ switchTab("randevu"); fRandevu._load(it); } }
+
+  var fIlac = setupForm("ilac", {
+    fields:["i-ad","i-doz","i-zaman","i-not"], focus:"i-ad",
+    collect:function(){
+      var a=document.getElementById("i-ad").value.trim();
+      if(!a){ document.getElementById("i-ad").focus(); return null; }
+      return { ad:a, doz:document.getElementById("i-doz").value.trim(),
+               zaman:document.getElementById("i-zaman").value.trim(), not:document.getElementById("i-not").value.trim() };
+    },
+    fill:function(it){ document.getElementById("i-ad").value=it.ad||""; document.getElementById("i-doz").value=it.doz||"";
+      document.getElementById("i-zaman").value=it.zaman||""; document.getElementById("i-not").value=it.not||""; }
+  });
+  function editIlac(id){ var it=DB.ilac.find(function(x){return x.id===id;}); if(it){ switchTab("ilac"); fIlac._load(it); } }
+
+  setupForm("soru", {
+    fields:["s-metin"], focus:"s-metin",
+    collect:function(){
+      var m=document.getElementById("s-metin").value.trim();
+      if(!m){ document.getElementById("s-metin").focus(); return null; }
+      return { metin:m, tamam:false };
+    },
+    fill:function(){}
+  });
+
+  var fTahlil = setupForm("tahlil", {
+    fields:["t-ad","t-tarih","t-yer","t-not"], focus:"t-ad",
+    defaults:function(){ document.getElementById("t-durum").value="bekliyor"; },
+    collect:function(){
+      var a=document.getElementById("t-ad").value.trim();
+      if(!a){ document.getElementById("t-ad").focus(); return null; }
+      return { ad:a, tarih:document.getElementById("t-tarih").value, durum:document.getElementById("t-durum").value,
+               yer:document.getElementById("t-yer").value.trim(), not:document.getElementById("t-not").value.trim() };
+    },
+    fill:function(it){ document.getElementById("t-ad").value=it.ad||""; document.getElementById("t-tarih").value=it.tarih||"";
+      document.getElementById("t-durum").value=it.durum||"bekliyor"; document.getElementById("t-yer").value=it.yer||""; document.getElementById("t-not").value=it.not||""; }
+  });
+  function editTahlil(id){ var it=DB.tahlil.find(function(x){return x.id===id;}); if(it){ switchTab("tahlil"); fTahlil._load(it); } }
+
+  /* --- Sekme yönetimi ---------------------------------------------------- */
+  var tabEls = TABS.map(function(k){ return document.getElementById("tab-"+k); });
+  function switchTab(name){
+    TABS.forEach(function(k){
+      var on = (k===name);
+      var tab = document.getElementById("tab-"+k);
+      tab.setAttribute("aria-selected", on?"true":"false");
+      tab.tabIndex = on?0:-1;
+      document.getElementById("panel-"+k).hidden = !on;
+    });
+  }
+  tabEls.forEach(function(tab, i){
+    tab.addEventListener("click", function(){ switchTab(TABS[i]); });
+    tab.addEventListener("keydown", function(e){
+      var j = null;
+      if (e.key==="ArrowRight") j=(i+1)%TABS.length;
+      else if (e.key==="ArrowLeft") j=(i-1+TABS.length)%TABS.length;
+      else if (e.key==="Home") j=0;
+      else if (e.key==="End") j=TABS.length-1;
+      if (j!==null){ e.preventDefault(); switchTab(TABS[j]); tabEls[j].focus(); }
+    });
+  });
+
+  /* --- Araç çubuğu: yazdır / yedek / yükle / sil ------------------------- */
+  document.getElementById("btnPrint").addEventListener("click", function(){
+    var d=new Date();
+    document.getElementById("printDate").textContent = "Yazdırma tarihi: " + d.getDate()+" "+AYLAR[d.getMonth()]+" "+d.getFullYear();
+    window.print();
+  });
+
+  document.getElementById("btnExport").addEventListener("click", function(){
+    var blob = new Blob([JSON.stringify(DB, null, 2)], {type:"application/json"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    var d = new Date();
+    var pad=function(n){return (n<10?"0":"")+n;};
+    a.href=url; a.download="saglik-ajandam-"+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+".json";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  });
+
+  var importFile = document.getElementById("importFile");
+  document.getElementById("btnImport").addEventListener("click", function(){ importFile.click(); });
+  importFile.addEventListener("change", function(){
+    var file = importFile.files && importFile.files[0]; if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      try {
+        var data = JSON.parse(reader.result);
+        var valid = data && typeof data==="object" && TABS.some(function(k){ return Array.isArray(data[k]); });
+        if (!valid) throw new Error("bicim");
+        if (!confirm("Yedek dosyası yüklenecek ve mevcut kayıtların yerini alacak. Devam edilsin mi?")) { importFile.value=""; return; }
+        TABS.forEach(function(k){ DB[k] = Array.isArray(data[k]) ? data[k] : []; });
+        // eksik id'leri tamamla
+        TABS.forEach(function(k){ DB[k].forEach(function(x){ if(!x.id) x.id=uid(); }); });
+        save(); renderAll();
+      } catch(err){ alert("Dosya okunamadı. Lütfen bu araçla alınmış bir yedek dosyası (.json) seçin."); }
+      importFile.value="";
+    };
+    reader.readAsText(file);
+  });
+
+  document.getElementById("btnClear").addEventListener("click", function(){
+    var toplam = TABS.reduce(function(n,k){ return n+DB[k].length; }, 0);
+    if (!toplam){ alert("Ajandanız zaten boş."); return; }
+    if (!confirm("Tüm kayıtlarınız (randevu, hatırlatıcı, soru, tahlil) bu cihazdan silinecek. Bu işlem geri alınamaz. Devam edilsin mi?")) return;
+    DB = def(); save(); renderAll();
+  });
+
+  renderAll();
+})();
+</script>
+
+</body>
+</html>
