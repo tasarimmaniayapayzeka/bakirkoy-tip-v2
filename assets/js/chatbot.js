@@ -34,6 +34,11 @@
 
   /* ---------- kök arayüz ---------- */
   var kok = (document.currentScript && document.currentScript.src || '').replace(/assets\/js\/chatbot\.js.*$/, '');
+  /* AI köprüsü: sunucuda chat-api.php varsa serbest sorular ona gider;
+     yoksa (ör. GitHub Pages) sessizce kurallı moda düşer */
+  var AI_URL = kok + 'chat-api.php';
+  var aiAktif = true;
+  var gecmis = []; // {rol:'user'|'bot', icerik}
   var link = document.createElement('link');
   link.rel = 'stylesheet';
   link.href = kok + 'assets/css/chatbot.css';
@@ -96,6 +101,56 @@
   }
   function linkBtn(href, metin, dis){
     return '<a class="cbt-linkbtn' + (dis ? ' dis' : '') + '" href="' + href + '">' + metin + '</a>';
+  }
+
+  /* ---------- AI köprüsü ---------- */
+  var SAYFA_AD = {
+    'randevu.html': 'Online randevu', 'fiyat-sor.html': 'Fiyat Sor formu',
+    'hangi-birime-gitmeliyim.html': 'Hangi birime gitmeliyim?', 'checkup-paketleri.html': 'Check-up paketleri',
+    'tahlil-sonuclari.html': 'Tahlil sonuçları', 'saglik-raporlari.html': 'Sağlık raporları',
+    'anlasmali-kurumlar.html': 'Anlaşmalı kurumlar', 'hekimler.html': 'Hekim kadromuz', 'iletisim.html': 'İletişim ve ulaşım'
+  };
+  function kacir(s){
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function aiHtml(metin){
+    /* [sayfa.html] işaretlerini buton yap, kalan metni kaçır */
+    var butonlar = '';
+    var govdeMetin = metin.replace(/\[([a-z0-9-]+\.html)\]/g, function(_, sayfa){
+      if (SAYFA_AD[sayfa]) { butonlar += linkBtn(sayfa, SAYFA_AD[sayfa], butonlar !== ''); return ''; }
+      return sayfa;
+    });
+    return kacir(govdeMetin.replace(/\s+([.,;:!?])/g, '$1').trim()).replace(/\n+/g, '<br>') + butonlar;
+  }
+  function eskiFallback(metin){
+    botMsj('Tam anlayamadım. Aşağıdaki başlıklardan seçebilir ya da doğrudan danışmanımıza yazabilirsiniz.' +
+      linkBtn(WA + '?text=' + encodeURIComponent('Merhaba, bir sorum var: ' + metin.slice(0, 100)), 'Sorunuzu WhatsApp\'a taşıyın', true));
+    anaMenu();
+  }
+  function aiSor(metin){
+    var yaziyor = document.createElement('div');
+    yaziyor.className = 'cbt-msj bot';
+    yaziyor.innerHTML = '<em>yazıyor…</em>';
+    govde.appendChild(yaziyor); kaydir();
+    var esik = setTimeout(function(){ yaziyor.innerHTML = '<em>yazıyor…</em> <span style="opacity:.6">(birkaç saniye)</span>'; }, 4000);
+    fetch(AI_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mesajlar: gecmis.slice(-10) })
+    }).then(function(r){
+      if (r.status === 404 || r.status === 503) aiAktif = false;
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(function(j){
+      clearTimeout(esik); yaziyor.remove();
+      if (!j || !j.yanit) throw new Error('bos');
+      gecmis.push({ rol: 'bot', icerik: j.yanit });
+      botMsj(aiHtml(j.yanit));
+      anaMenu(400);
+    }).catch(function(){
+      clearTimeout(esik); yaziyor.remove();
+      eskiFallback(metin);
+    });
   }
 
   /* ---------- ana menü ---------- */
@@ -269,9 +324,11 @@
 
     if (niyetDene(t, tokens)) return;
 
-    botMsj('Tam anlayamadım. Aşağıdaki başlıklardan seçebilir ya da doğrudan danışmanımıza yazabilirsiniz.' +
-      linkBtn(WA + '?text=' + encodeURIComponent('Merhaba, bir sorum var: ' + metin.slice(0, 100)), 'Sorunuzu WhatsApp\'a taşıyın', true));
-    anaMenu();
+    /* hiçbir kural eşleşmedi: varsa AI'ya sor, yoksa eski davranış */
+    gecmis.push({ rol: 'user', icerik: metin.slice(0, 500) });
+    if (gecmis.length > 12) gecmis = gecmis.slice(-12);
+    if (aiAktif) { aiSor(metin); return; }
+    eskiFallback(metin);
   }
 
   /* ---------- olaylar ---------- */
