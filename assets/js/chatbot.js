@@ -41,14 +41,14 @@
   var gecmis = []; // {rol:'user'|'bot', icerik}
   var link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = kok + 'assets/css/chatbot.css?v=2';
+  link.href = kok + 'assets/css/chatbot.css?v=3';
   document.head.appendChild(link);
 
   var launch = document.createElement('button');
   launch.type = 'button';
   launch.className = 'cbt-launch';
   launch.setAttribute('aria-label', 'Yardım botunu aç');
-  launch.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 20l1-4.9A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg><span class="cbt-launch-txt">Size yardımcı olalım</span>';
+  launch.innerHTML = '<span class="cbt-amono" aria-hidden="true">A</span><span class="cbt-fab-dot" aria-hidden="true"></span><span class="cbt-launch-txt">Size yardımcı olalım</span>';
 
   var panel = document.createElement('div');
   panel.className = 'cbt-panel';
@@ -56,9 +56,12 @@
   panel.setAttribute('aria-label', 'Yardım botu');
   panel.innerHTML =
     '<div class="cbt-head">' +
-      '<span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v18M3 12h18"/></svg></span>' +
-      '<div><strong>Avrupa Tıp Merkezi</strong><span id="cbtDurum"></span></div>' +
-      '<button type="button" class="cbt-kapat" aria-label="Botu kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
+      '<span class="mark" aria-hidden="true">A</span>' +
+      '<div><strong>Avrupa Tıp Asistanı</strong><span id="cbtDurum"></span></div>' +
+      '<div class="cbt-aksiyon">' +
+        '<a class="cbt-wa-btn" href="' + WA + '?text=' + encodeURIComponent('Merhaba, bilgi almak istiyorum.') + '" target="_blank" rel="noopener" aria-label="WhatsApp danışma hattı"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a11 11 0 0 1-5.9-5.2c-.4-.7-.7-1.5-.7-2.3 0-.8.4-1.4.8-1.7.2-.2.4-.2.6-.2h.4c.2 0 .4 0 .6.4l.8 1.9c.1.2 0 .4-.1.5l-.4.5c-.1.1-.2.3-.1.5.4.8 1.5 2 2.7 2.5.2.1.4.1.5-.1l.6-.7c.1-.2.3-.2.5-.1l1.8.9c.2.1.3.2.3.4 0 .1 0 .5-.1.7z"/></svg></a>' +
+        '<button type="button" class="cbt-kapat" aria-label="Botu kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
+      '</div>' +
     '</div>' +
     '<div class="cbt-govde" id="cbtGovde" aria-live="polite"></div>' +
     '<div class="cbt-alt">' +
@@ -129,10 +132,11 @@
   }
   function aiSor(metin){
     var yaziyor = document.createElement('div');
-    yaziyor.className = 'cbt-msj bot';
-    yaziyor.innerHTML = '<em>yazıyor…</em>';
+    yaziyor.className = 'cbt-yaziyor';
+    yaziyor.setAttribute('aria-label', 'Asistan yazıyor');
+    yaziyor.innerHTML = '<i></i><i></i><i></i>';
     govde.appendChild(yaziyor); kaydir();
-    var esik = setTimeout(function(){ yaziyor.innerHTML = '<em>yazıyor…</em> <span style="opacity:.6">(birkaç saniye)</span>'; }, 4000);
+    var esik = setTimeout(function(){}, 0);
     fetch(AI_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -357,4 +361,20 @@
   }
   panel.querySelector('#cbtGonder').addEventListener('click', gonder);
   giris.addEventListener('keydown', function(e){ if (e.key === 'Enter') gonder(); });
+
+  /* ---------- otomatik karşılama baloncuğu (oturumda bir kez) ---------- */
+  try {
+    if (!sessionStorage.getItem('cbtNudge')) {
+      var nudge = document.createElement('div');
+      nudge.className = 'cbt-nudge';
+      nudge.innerHTML = '<button type="button" class="cbt-nudge-x" aria-label="Kapat">✕</button><strong>Merhaba! 👋</strong> Randevu ve tüm sorularınız için buradayım.';
+      document.body.appendChild(nudge);
+      setTimeout(function(){ nudge.classList.add('girdi'); }, 1800);
+      var nudgeGit = function(){ if (nudge.parentNode) nudge.remove(); try { sessionStorage.setItem('cbtNudge', '1'); } catch(e){} };
+      nudge.querySelector('.cbt-nudge-x').addEventListener('click', function(e){ e.stopPropagation(); nudgeGit(); });
+      nudge.addEventListener('click', function(){ nudgeGit(); launch.click(); });
+      launch.addEventListener('click', nudgeGit);
+      setTimeout(nudgeGit, 30000);
+    }
+  } catch(e){}
 })();
