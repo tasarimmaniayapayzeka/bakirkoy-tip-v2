@@ -171,9 +171,9 @@ ul,ol{margin:0; padding:0; list-style:none}
 .logo-text{display:flex; flex-direction:column; line-height:1.2}
 .logo-text strong{font-family:var(--ff-serif); font-weight:600; font-size:1.06rem; color:var(--navy-900)}
 .logo-text small{font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-top:.2rem}
-.nav{display:flex; gap:1.6rem}
+.nav{display:flex; gap:1.35rem}
 .nav a{
-  font-size:.82rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+  font-size:.78rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
   color:var(--ink-2); padding:.6rem 0; border-bottom:2px solid transparent;
 }
 .nav a:hover{color:var(--navy-900); border-bottom-color:var(--copper-500)}
@@ -186,11 +186,12 @@ ul,ol{margin:0; padding:0; list-style:none}
 }
 .burger svg{width:22px; height:22px}
 @media (max-width:1340px){
-  .nav{gap:1.05rem}
-  .nav a{font-size:.76rem; letter-spacing:.05em}
-  .logo-text strong{white-space:nowrap}
+  .nav{gap:.9rem}
+  .nav a{font-size:.72rem; letter-spacing:.04em}
+  .logo-text strong{white-space:nowrap; font-size:1rem}
+  .header-cta .btn{font-size:.86rem; padding:.5rem .95rem}
 }
-@media (max-width:1200px){ .nav{display:none} .burger{display:grid} }
+@media (max-width:1140px){ .nav{display:none} .burger{display:grid} }
 @media (max-width:640px){
   .header-cta .btn--ghost{display:none}
   /* Randevu butonu mobil alt barda var — header'da gizle, marka tek satır kalsın */
