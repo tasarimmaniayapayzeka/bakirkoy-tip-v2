@@ -253,7 +253,7 @@
   }
 
   /* ---------- serbest metin: niyet eşleme ---------- */
-  var ACIL = ['acil','bayıl','baygın','nöbet','anafilak','alerjik şok','boğul','bilinç','morar','kanama','kanıyor','kan kaybı','çok kötü','kalp krizi','kriz','felç','inme','zehirlen','intihar','kendime zarar','şiddetli göğüs','göğüs ağrı','göğsüm ağrı','göğsümde baskı','soğuk terleme','şiddetli nefes','nefes alam','nefes darlığı'];
+  var ACIL = ['acil','bayıl','baygın','nöbet','anafilak','alerjik şok','boğul','bilinç','morar','kanama','kanıyor','kan kaybı','çok kötü','kalp krizi','kriz','felç','inme','zehirlen','intihar','kendime zarar','şiddetli göğüs','göğüs ağrı','göğsüm ağrı','göğsümde','göğsüme','şiddetli ağrı','soğuk terleme','şiddetli nefes','nefes alam','nefes darlığı'];
   var NIYETLER = [
     { k: ['randevu','muayene ol','saat al'], f: akisRandevu },
     { k: ['fiyat','ücret','kaç para','ne kadar','kaça','tarife'], f: akisFiyat },
