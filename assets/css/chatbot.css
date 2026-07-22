@@ -1,6 +1,6 @@
 /* Avrupa Tıp Merkezi — kurallı chatbot (Demo 2, lacivert+bakır) */
 .cbt-launch{
-  position:fixed; left:18px; bottom:18px; z-index:55;
+  position:fixed; right:18px; bottom:18px; z-index:55;
   display:flex; align-items:center; gap:.55rem;
   background:var(--navy-900); color:#fff; border:1px solid var(--navy-700);
   border-radius:999px; padding:.8rem 1.15rem; font-weight:700; font-size:.88rem;
@@ -10,12 +10,12 @@
 .cbt-launch:hover{background:var(--navy-800)}
 .cbt-launch svg{width:20px; height:20px; color:var(--copper-300); flex:none}
 @media (max-width:900px){
-  .cbt-launch{bottom:72px; left:12px; padding:.75rem}
+  .cbt-launch{bottom:72px; right:12px; padding:.75rem}
   .cbt-launch .cbt-launch-txt{display:none}
 }
 
 .cbt-panel{
-  position:fixed; left:18px; bottom:18px; z-index:70;
+  position:fixed; right:18px; bottom:18px; z-index:70;
   width:min(380px, calc(100vw - 24px)); height:min(560px, calc(100vh - 40px));
   background:#fff; border:1px solid var(--line); border-top:3px solid var(--copper-600);
   display:none; flex-direction:column;
