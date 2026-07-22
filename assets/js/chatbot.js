@@ -41,7 +41,7 @@
   var gecmis = []; // {rol:'user'|'bot', icerik}
   var link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = kok + 'assets/css/chatbot.css?v=4';
+  link.href = kok + 'assets/css/chatbot.css?v=5';
   document.head.appendChild(link);
 
   var launch = document.createElement('button');
