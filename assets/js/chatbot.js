@@ -4,8 +4,8 @@
 (function(){
   'use strict';
 
-  var TEL = 'tel:+904440000';
-  var WA = 'https://wa.me/905000000000';
+  var TEL = 'tel:+905400580888';
+  var WA = 'https://wa.me/905400580888';
 
   /* ---------- yardımcılar ---------- */
   /* tr-TR küçültme + ı→i katlama: "ACIL" (ASCII I) → "acıl" → "acil" eşleşir */
@@ -220,7 +220,7 @@
   function akisSigorta(){
     botMsj('SGK ve 12 tamamlayıcı sağlık sigortasıyla anlaşmalıyız. Poliçe kapsamları ürüne göre değiştiği için randevu öncesi telefonla teyit öneririz.' +
       linkBtn('anlasmali-kurumlar.html', 'Anlaşmalı kurum listesi') +
-      linkBtn(TEL, '444 0 000 — kapsam teyidi', true));
+      linkBtn(TEL, '0540 058 08 88 — kapsam teyidi', true));
     anaMenu();
   }
 
@@ -243,7 +243,7 @@
       ? 'Şu an çalışma saatleri içindeyiz — danışmanlarımız hazır. WhatsApp\'tan yazın ya da arayın; ilk yanıt hedefimiz 5 dakika.'
       : 'Şu an mesai dışındayız. Mesajınızı WhatsApp\'tan bırakın; <strong>ilk iş saatinde (09.00\'a kadar) ilk biz arayalım.</strong>');
     botMsj(linkBtn(WA + '?text=' + encodeURIComponent('Merhaba, bilgi almak istiyorum.'), 'WhatsApp\'ta danışmana yazın') +
-      linkBtn(TEL, '444 0 000\'ı ara', true), 'bot');
+      linkBtn(TEL, '0540 058 08 88\'ı ara', true), 'bot');
     anaMenu();
   }
 
