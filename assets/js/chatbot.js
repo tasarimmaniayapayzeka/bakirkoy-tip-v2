@@ -228,6 +228,7 @@
         ['📄 Sağlık raporları', akisRapor],
         ['❤️ Check-up paketleri', akisCheckup],
         ['🛡 Sigortam geçer mi?', akisSigorta],
+        ['🎥 Görüntülü ön görüşme', akisGorusme],
         ['🕐 Saatler ve ulaşım', akisUlasim],
         ['👤 Danışmana bağlan', akisInsan],
       ]);
@@ -301,6 +302,12 @@
     anaMenu();
   }
 
+  function akisGorusme(){
+    botMsj('Merkeze gelmeden önce süreci konuşmak için kısa bir <strong>çevrim içi tanışma görüşmesi</strong> planlayabiliriz — uygulama kurmadan, tarayıcıdan katılırsınız. Görüşmede tanı konmaz; süreç, belgeler ve planlama konuşulur.' +
+      linkBtn('gorusme-talebi.html', 'Görüşme talebi oluştur'));
+    anaMenu();
+  }
+
   function akisInsan(){
     var acikMi = mesaiIcinde();
     botMsj(acikMi
@@ -349,6 +356,7 @@
     { k: ['hangi birim','hangi bölüm','şikayet','şikâyet','nereye git'], f: akisTriyaj },
     { k: ['dosya','mr','tetkik yükle','ikinci görüş','film'], f: akisHekim },
     { k: ['whatsapp','danışman','temsilci','insan','canlı','biriyle'], f: akisInsan },
+    { k: ['görüntülü','video görüşme','online görüşme','ön görüşme'], f: akisGorusme },
   ];
   var TESHIS = ['teşhis','tanı koy','reçete','antibiyotik','ağrı kesici','hangi hap','hangi ilaç','ilaç öner','ne kullanmalı','nasıl geçer','tedavisi ne','iyi gelir','neden olur','belirtisi mi'];
 
@@ -405,6 +413,10 @@
       var cep = digits.match(/0?5\d{9}/);
       if (cep || (digits.length >= 10 && digits.length <= 12)) {
         mod = null;
+        fetch(kok + 'api-talep.php', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tur: 'bot-randevu', tel: digits, ozet: seciliBrans, sayfa: 'Chatbot' })
+        }).catch(function(){});
         botMsj('Teşekkürler! <strong>' + seciliBrans + '</strong> için talebiniz alındı; çalışma saatleri içinde 15 dakika içinde aramayı hedefliyoruz.');
         anaMenu(600);
         return;

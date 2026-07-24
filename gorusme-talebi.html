@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hakkımızda | Özel Avrupa Tıp Merkezi — 1998'den Beri Bakırköy'de</title>
-<meta name="description" content="1998'den beri Bakırköy'de hizmet veren Özel Avrupa Tıp Merkezi; 14 tıbbi birim, 26 uzman hekim, laboratuvar ve görüntüleme altyapısıyla semtinizde.">
+<title>Görüntülü Ön Görüşme | Özel Avrupa Tıp Merkezi — Çevrim İçi Tanışma</title>
+<meta name="description" content="Merkeze gelmeden önce süreci konuşalım: uygulama kurmadan, tarayıcıdan katılacağınız kısa bir çevrim içi bilgilendirme görüşmesi planlayın. Telefon: 0540 058 08 88.">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +12,10 @@
 <link rel="stylesheet" href="assets/css/style.css?v=2">
 <script defer src="assets/js/main.js"></script>
 <script defer src="assets/js/chatbot.js?v=5"></script>
+<style>
+.fs-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(2rem,5vw,3.5rem); align-items:start}
+@media (max-width:900px){ .fs-grid{grid-template-columns:1fr} }
+</style>
 </head>
 <body>
 <a class="skip" href="#main">İçeriğe geç</a>
@@ -66,96 +70,91 @@
 
 <section class="pagehead">
   <div class="wrap">
-    <nav class="crumbs" aria-label="Konum">
-      <a href="index.html">Ana Sayfa</a><span>›</span>
-      <span aria-current="page">Hakkımızda</span>
-    </nav>
-    <h1>Hakkımızda</h1>
-    <p>1998'den bu yana Bakırköy'de, aynı binada büyüyerek hizmet veriyoruz. Amacımız ilk günden beri aynı: semt sakinlerinin nitelikli sağlık hizmetine, beklemeden ve şehrin öbür ucuna gitmeden ulaşabilmesi.</p>
+    <nav class="crumbs" aria-label="Sayfa yolu"><a href="index.html">Ana Sayfa</a> › <span>Görüntülü Ön Görüşme</span></nav>
+    <h1>Görüntülü Ön Görüşme</h1>
+    <p>Merkeze gelmeden önce süreci konuşalım. Uygulama kurmadan, telefon veya bilgisayarınızın tarayıcısından katılacağınız kısa bir tanışma ve planlama görüşmesi — tanı konmaz, süreç ve hazırlık anlatılır. <strong>Kesin değerlendirme, hekim muayenesinde yapılır.</strong></p>
   </div>
 </section>
 
 <section class="section">
-  <div class="wrap kd-intro">
+  <div class="wrap loc-grid" style="display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(2rem,5vw,4rem); align-items:start">
     <div>
-      <span class="kicker">Hikâyemiz</span>
-      <h2>Semt ölçeğinde, hastane ciddiyetinde</h2>
-      <p>Özel Avrupa Tıp Merkezi, 1998 yılında Zuhuratbaba'da iki katlı bir poliklinik olarak kuruldu. Bugün 14 tıbbi birimi, 26 uzman hekimi, merkez laboratuvarı ve görüntüleme altyapısıyla, yılda on binlerce hastaya hizmet veren bir sağlık kuruluşuna dönüştü.</p>
-      <p>Büyürken vazgeçmediğimiz ilke, tıp merkezi ölçeğinin en değerli avantajı olan kişisel ilgi: hekiminizin sizi tanıması, kayıtlarınızın tek merkezde tutulması ve her ziyaretinizde aynı ekiple karşılaşmanız. Muayene, tahlil ve görüntülemeyi aynı binada, çoğu zaman aynı gün içinde tamamlıyoruz.</p>
-    </div>
-    <div>
-      <div class="prof-photo">
-        <img src="assets/img/bina-gercek.webp" alt="Avrupa Tıp Merkezi bina cephesi ve tabelası" width="1200" height="900">
+      <form class="form-card js-demo-form" data-ok="formOk" data-tur="gorusme" action="#" method="post">
+        <h2 class="form-title">Görüşme talebi</h2>
+        <p class="form-sub">Yıldızlı alanlar zorunludur. Uygun saati birlikte belirleyip görüşme bağlantısını WhatsApp'tan gönderiyoruz.</p>
+        <div class="row2">
+          <div class="field">
+            <label for="ad">Ad Soyad *</label>
+            <input id="ad" name="ad" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="tel">Telefon (WhatsApp) *</label>
+            <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="05XX XXX XX XX" maxlength="14" required>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="konu">Görüşme konusu *</label>
+            <select id="konu" name="konu" required>
+              <option value="">Seçiniz</option>
+              <option>Check-up planlaması</option>
+              <option>Ameliyat / işlem öncesi bilgilendirme</option>
+              <option>Kronik takip süreci</option>
+              <option>Yurt dışından geliyorum (sağlık turizmi)</option>
+              <option>Diğer</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="zaman">Tercih ettiğiniz gün ve saat</label>
+            <input id="zaman" name="zaman" type="text" placeholder="Örn. Çarşamba 14.00 sonrası">
+          </div>
+        </div>
+        <div class="field">
+          <label for="notunuz">Kısaca eklemek istedikleriniz (isteğe bağlı)</label>
+          <textarea id="notunuz" name="notunuz" rows="3" placeholder="Görüşmede konuşmak istediğiniz konu"></textarea>
+        </div>
+        <input type="text" name="web" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px">
+        <div class="field consent">
+          <label><input type="checkbox" name="kvkk" required> <span><a href="kvkk.html">KVKK Aydınlatma Metni</a>'ni okudum; talebimin yanıtlanması için iletişim bilgilerimin kullanılmasına onay veriyorum. *</span></label>
+        </div>
+        <button class="btn btn--copper btn--wide" type="submit">Görüşme Talebi Gönder</button>
+      </form>
+      <div class="form-ok" id="formOk" role="status">
+        <h3>Talebiniz alındı ✓</h3>
+        <p>Hasta danışmanımız çalışma saatleri içinde sizi arayıp uygun saati birlikte belirleyecek; görüşme bağlantısı WhatsApp'ınıza gelecek.</p>
+        <a class="btn btn--ghost" href="index.html">Ana sayfaya dön</a>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="section section--dark">
-  <div class="wrap">
-    <div class="sec-head center">
-      <span class="kicker">Rakamlarla</span>
-      <h2 style="color:#fff">27 yılın birikimi</h2>
-      <p>Kuruluşumuzdan bugüne, kayıtlarımıza dayanan tablo.</p>
-    </div>
-    <div class="why-grid">
-      <div class="why" style="text-align:center">
-        <strong style="display:block; font-family:var(--ff-serif); font-size:2.2rem; color:var(--copper-300); line-height:1.2">27</strong>
-        <p style="margin-top:.4rem">yıllık kesintisiz hizmet</p>
+    <aside>
+      <div class="info-box">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 10l4.5-2.5v9L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg> Nasıl işler?</h3>
+        <ol style="margin:0; padding-left:1.1rem; display:flex; flex-direction:column; gap:.55rem; color:var(--ink-2); font-size:.93rem">
+          <li>Formu gönderin; danışmanımız arayıp saati netleştirsin.</li>
+          <li>Görüşme bağlantısı WhatsApp'ınıza gelsin.</li>
+          <li>Saatinde bağlantıya dokunun — uygulama kurulmaz, tarayıcıdan açılır.</li>
+          <li>10-15 dakikada süreci, belgeleri ve planı konuşalım.</li>
+          <li>Dilerseniz muayene randevunuzu birlikte oluşturalım.</li>
+        </ol>
       </div>
-      <div class="why" style="text-align:center">
-        <strong style="display:block; font-family:var(--ff-serif); font-size:2.2rem; color:var(--copper-300); line-height:1.2">26</strong>
-        <p style="margin-top:.4rem">uzman hekim, 60+ sağlık çalışanı</p>
+      <div class="info-box">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l7 4v5c0 5-3.5 7.7-7 9-3.5-1.3-7-4-7-9V7z"/></svg> Bilmeniz gerekenler</h3>
+        <ul class="hours">
+          <li><span class="day">Tanı, reçete, tedavi kararı</span><span class="time">Verilmez</span></li>
+          <li><span class="day">Süreç, belge ve planlama</span><span class="time">Anlatılır</span></li>
+          <li><span class="day">Görüşme kaydı</span><span class="time">Alınmaz</span></li>
+          <li><span class="day">Ücret</span><span class="time">Bilgi için forma / telefona</span></li>
+        </ul>
+        <p style="margin:.8rem 0 0; color:var(--ink-2); font-size:.88rem">Bu görüşme bir muayene değildir; kesin değerlendirme hekim muayenesinde yapılır. Acil durumlarda 112'yi arayın.</p>
       </div>
-      <div class="why" style="text-align:center">
-        <strong style="display:block; font-family:var(--ff-serif); font-size:2.2rem; color:var(--copper-300); line-height:1.2">14</strong>
-        <p style="margin-top:.4rem">tıbbi birim, aynı çatı altında</p>
+      <div class="info-box">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Beklemeden konuşmak isterseniz</h3>
+        <div style="display:flex; flex-direction:column; gap:.7rem">
+          <a class="btn btn--primary btn--wide" href="tel:+905400580888">0540 058 08 88</a>
+          <a class="btn btn--ghost btn--wide" href="https://wa.me/905400580888?text=Merhaba%2C%20g%C3%B6r%C3%BCnt%C3%BCl%C3%BC%20%C3%B6n%20g%C3%B6r%C3%BC%C5%9Fme%20planlamak%20istiyorum.">WhatsApp'tan yazın</a>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">Değerlerimiz</span>
-      <h2>Bizi biz yapan üç ilke</h2>
-    </div>
-    <div class="test-grid">
-      <div class="test-card">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
-        <h3>Güven ve şeffaflık</h3>
-        <p>Hangi tetkikin neden istendiğini açıklarız; gereksiz işlem yapmayız. Hekim kadromuzun eğitim geçmişi sitemizde açıkça yer alır.</p>
-      </div>
-      <div class="test-card">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-        <h3>Zamanınıza saygı</h3>
-        <p>Randevu saatlerine sadakat, aynı gün tahlil sonucu ve tek ziyarette tamamlanan işlem akışı önceliğimizdir.</p>
-      </div>
-      <div class="test-card">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span>
-        <h3>Semtin parçası olmak</h3>
-        <p>Üç kuşaktır aynı aileleri takip ediyoruz. Hastalarımızın çoğu bize yürüyerek ulaşır; biz de bu yakınlığın sorumluluğuyla çalışırız.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--dark">
-  <div class="wrap sec-head center" style="margin-bottom:0">
-    <span class="kicker">Randevu</span>
-    <h2 style="color:#fff">Bizi yakından tanıyın</h2>
-    <p>Merkezimizi ziyaret edin veya telefonla bilgi alın; size uygun hekim ve saati birlikte belirleyelim.</p>
-    <div class="hero-actions" style="justify-content:center; margin-top:1.75rem">
-      <a class="btn btn--copper" href="randevu.html">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
-        Online Randevu Al
-      </a>
-      <a class="btn btn--outline-light" href="tel:+905400580888">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
-        0540 058 08 88
-      </a>
-    </div>
+    </aside>
   </div>
 </section>
 
